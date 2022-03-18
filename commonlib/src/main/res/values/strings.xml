@@ -1,0 +1,4 @@
+<resources>
+    <string name="loading">加载中</string>
+    <string name="load_end">到底啦</string>
+</resources>

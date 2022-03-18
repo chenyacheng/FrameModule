@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    api 'com.google.auto.service:auto-service:1.0-rc4'
+    api 'com.squareup:javapoet:1.13.0'
+    api project(':wxannotaion')
+    // Gradle 5.0以上，无法自动生成文件，原因是在Gradle 5.0将忽略compile classpath中的annotation processor，需要手动添加到annotation processor path
+    annotationProcessor 'com.google.auto.service:auto-service:1.0-rc4'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

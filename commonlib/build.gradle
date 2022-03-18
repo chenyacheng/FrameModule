@@ -1,0 +1,88 @@
+import com.module.build.Alibaba
+import com.module.build.AndroidX
+import com.module.build.BuildConfig
+import com.module.build.Github
+import com.module.build.Google
+import com.module.build.Squareup
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk BuildConfig.compileSdk
+    defaultConfig {
+        minSdk BuildConfig.minSdk
+        targetSdk BuildConfig.targetSdk
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+
+    }
+
+    buildTypes {
+        debug {
+            buildConfigField("String", "BASE_URL", "\"${base_url}\"")
+            buildConfigField("String", "IMAGE_URL", "\"${image_url}\"")
+            buildConfigField("String", "BUGLY", "\"${bugly}\"")
+            buildConfigField("boolean", "BUGLY_LOG", "${bugly_log}")
+            buildConfigField("boolean", "MODULE", "${isModule}")
+            minifyEnabled false
+        }
+        release {
+            buildConfigField("String", "BASE_URL", "\"${base_url}\"")
+            buildConfigField("String", "IMAGE_URL", "\"${image_url}\"")
+            buildConfigField("String", "BUGLY", "\"${bugly}\"")
+            buildConfigField("boolean", "BUGLY_LOG", "${bugly_log}")
+            buildConfigField("boolean", "MODULE", "${isModule}")
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+dependencies {
+    // 支付宝支付通过导入aar包
+    implementation project(':localrepo')
+    api project(':baselib')
+    api Google.material
+    api Google.zxing
+    implementation AndroidX.lifecycle_common_java8
+    api AndroidX.viewpager2
+    api AndroidX.constraintlayout
+    //api AndroidX.splashscreen
+    api Github.glide
+    annotationProcessor Github.glide_compiler
+    // 图片选择器
+    api Github.pictureselector
+    api Github.snackBar
+    // 检测内存泄漏
+    debugImplementation Squareup.leakcanary_android
+    // 阿里路由
+    api Alibaba.arouter
+    annotationProcessor Alibaba.arouter_compiler
+    // 微信支付
+    api 'com.tencent.mm.opensdk:wechat-sdk-android:+'
+    // 微信支付封装库
+    api project(':wxannotaion')
+    annotationProcessor project(':wxcompiler')
+    // 其中latest.release指代最新Bugly SDK版本号
+    api 'com.tencent.bugly:crashreport:latest.release'
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_00000000">#00000000</color>
+    <color name="common_ff009944">#ff009944</color>
+    <color name="common_ff919191">#ff919191</color>
+    <color name="common_88000000">#88000000</color>
+    <color name="common_ff000000">#ff000000</color>
+    <color name="common_ffffffff">#ffffffff</color>
+    <color name="common_ffDBDCDC">#ffDBDCDC</color>
+    <color name="common_ff00883D">#ff00883D</color>
+    <color name="common_ffc1c1c1">#ffc1c1c1</color>
+    <color name="common_ff666666">#ff666666</color>
+    <color name="common_ffF2F2F2">#ffF2F2F2</color>
+    <color name="common_ff717071">#ff717071</color>
+
+
+</resources>

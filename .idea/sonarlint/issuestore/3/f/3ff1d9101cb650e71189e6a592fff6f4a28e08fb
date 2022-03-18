@@ -1,0 +1,11 @@
+
+<
+java:S1659"!Declare "end" on a separate line.(þŠ¡ãûÿÿÿÿ
+h
+java:S37768"RRefactor this method to reduce its Cognitive Complexity from 25 to the 15 allowed.(ÝŠ‡°
+<
+java:S1168b"&Return an empty array instead of null.(¥¹ï
+<
+java:S1168t"&Return an empty array instead of null.(¥¹ï
+T
+java:S3034f">Prevent "int" promotion by adding "& 0xff" to this expression.(Ç—ƒ€

@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Status bar color. -->
+        <item name="colorPrimary">@color/common_00000000</item>
+        <!-- 应用主颜色配置 -->
+        <item name="colorPrimaryDark">@color/common_ffffffff</item>
+        <item name="colorAccent">@color/common_ffffffff</item>
+    </style>
+
+    <style name="AppFadeTheme" parent="@style/AppTheme">
+        <item name="android:windowAnimationStyle">@style/AnimFade</item>
+    </style>
+
+    <!-- 页面之间切换的转场动画 -->
+    <!--    当我们从 A1 启动 A2 时，A1 从屏幕上消失，这个动画叫做 android:activityOpenExitAnimation-->
+    <!--    当我们从 A1 启动 A2 时，A2 出现在屏幕上，这个动画叫做 android:activityOpenEnterAnimation-->
+    <!--    当我们从 A2 退出回到 A1 时，A2 从屏幕上消失，这个叫做 android:activityCloseExitAnimation-->
+    <!--    当我们从 A2 退出回到 A1 时，A1 出现在屏幕上，这个叫做 android:activityCloseEnterAnimation-->
+    <!-- 页面之间切换的转场动画 -->
+    <style name="AnimFade" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
+    </style>
+</resources>

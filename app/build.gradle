@@ -1,0 +1,94 @@
+import com.module.build.Alibaba
+import com.module.build.BuildConfig
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdk BuildConfig.compileSdk
+    defaultConfig {
+        applicationId "com.module.app"
+        minSdk BuildConfig.minSdk
+        targetSdk BuildConfig.targetSdk
+        versionCode BuildConfig.versionCode
+        versionName BuildConfig.versionName
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    // signingConfigs要放在buildTypes前面
+    signingConfigs {
+        metaKey {
+            storeFile file("signature/xxx.jks")
+            storePassword "123456"
+            keyAlias "key0"
+            keyPassword "123456"
+        }
+    }
+    buildTypes {
+        debug {
+            // minifyEnabled是否启用混淆
+            minifyEnabled false
+            // 删除无效的Resource
+            shrinkResources false
+            // Zipalign优化
+            zipAlignEnabled false
+        }
+        release {
+            // minifyEnabled是否启用混淆
+            minifyEnabled false
+            // 删除无效的Resource
+            shrinkResources false
+            // Zipalign优化
+            zipAlignEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.metaKey
+        }
+        applicationVariants.all { variant ->
+            variant.outputs.all { output ->
+                if ('release' == variant.buildType.name) {
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        def time = releaseTime()
+                        def fileName = "module_${time}${"_" + versionName}.apk"
+                        outputFileName = fileName
+                    }
+                }
+            }
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+}
+
+static def releaseTime() {
+    def date = new Date()
+    return date.format("yyyy-MM-dd_HHmmss")
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
+
+dependencies {
+    if (isModule.toBoolean()) {
+        implementation project(':commonlib')
+    } else {
+        implementation project(':home')
+        implementation project(':me')
+        annotationProcessor Alibaba.arouter_compiler
+    }
+}

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_footer"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminateDrawable="@drawable/progressbar_refresh" />
+
+    <TextView
+        android:id="@+id/tv_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loading"
+        android:textColor="@color/common_ff919191"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:id="@+id/ll_end"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_15"
+        android:layout_marginLeft="@dimen/dp_15"
+        android:layout_marginEnd="@dimen/dp_15"
+        android:layout_marginRight="@dimen/dp_15"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.8dp"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:background="@color/common_ff919191"
+            android:gravity="start" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:paddingStart="@dimen/dp_5"
+            android:paddingLeft="@dimen/dp_5"
+            android:paddingEnd="@dimen/dp_5"
+            android:paddingRight="@dimen/dp_5"
+            android:text="@string/load_end"
+            android:textColor="@color/common_ff919191"
+            android:textSize="14sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0.8dp"
+            android:layout_weight="1"
+            android:alpha="0.5"
+            android:background="@color/common_ff919191"
+            android:gravity="end" />
+
+    </LinearLayout>
+
+</LinearLayout>
