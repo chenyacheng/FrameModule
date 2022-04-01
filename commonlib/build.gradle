@@ -62,6 +62,7 @@ dependencies {
     // 支付宝支付通过导入aar包
     implementation project(':localrepo')
     api project(':baselib')
+    api project(':networklib')
     api Google.material
     api Google.zxing
     implementation AndroidX.lifecycle_common_java8

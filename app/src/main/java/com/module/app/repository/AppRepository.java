@@ -1,11 +1,11 @@
 package com.module.app.repository;
 
-import com.module.arch.base.BaseApi;
-import com.module.arch.base.BaseRequest;
 import com.module.common.AppConfig;
 import com.module.common.api.CommonApi;
 import com.module.common.network.ResponseDataProcess;
 import com.module.common.network.ResponseDataProcessListener;
+import com.module.network.BaseApi;
+import com.module.network.BaseRequest;
 
 /**
  * @author BD

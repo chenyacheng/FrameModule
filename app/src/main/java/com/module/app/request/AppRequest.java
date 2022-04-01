@@ -1,10 +1,10 @@
 package com.module.app.request;
 
-import com.module.arch.callback.ProtectedUnPeekLiveData;
-import com.module.arch.callback.UnPeekLiveData;
 import com.module.app.repository.AppRepository;
+import com.module.common.network.ProtectedUnPeekLiveData;
 import com.module.common.network.ResponseDataProcessListener;
-import com.module.common.utils.EventProcess;
+import com.module.common.network.UnPeekLiveData;
+import com.module.common.network.EventProcess;
 
 /**
  * App页面的请求

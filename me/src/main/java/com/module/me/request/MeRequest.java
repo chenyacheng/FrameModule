@@ -1,6 +1,6 @@
 package com.module.me.request;
 
-import com.module.common.utils.EventProcess;
+import com.module.common.network.EventProcess;
 
 /**
  * @author BD

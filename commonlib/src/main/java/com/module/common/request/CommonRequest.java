@@ -1,14 +1,14 @@
 package com.module.common.request;
 
-import com.module.arch.callback.ProtectedUnPeekLiveData;
-import com.module.arch.callback.UnPeekLiveData;
 import com.module.common.data.CaptchaBean;
 import com.module.common.data.RegisterBean;
+import com.module.common.network.ProtectedUnPeekLiveData;
+import com.module.common.network.UnPeekLiveData;
 import com.module.common.repository.CommonRepository;
 import com.module.common.data.LoginBean;
 import com.module.common.data.UpdateUserPwdBean;
 import com.module.common.network.ResponseDataProcessListener;
-import com.module.common.utils.EventProcess;
+import com.module.common.network.EventProcess;
 
 /**
  * 共用页面的请求

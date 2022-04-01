@@ -12,7 +12,6 @@ public class UrlConstant {
     public static final String REGISTER = "/user/register";
     public static final String LOGIN = "/user/login";
     public static final String UPDATE_USER_PASSWORD = "/system/updateUserPassword";
-    public static final String USER_QUERY_USER_BASIC = "/user/queryUserBasic";
     public static final String UPLOAD_USER_PORTRAIT = "/user/uploadUserPortrait";
     public static final String QUERY_START_PAGE = "/content/queryStartPage";
     public static final String VERIFY_VERSION = "/system/verifyVersion";

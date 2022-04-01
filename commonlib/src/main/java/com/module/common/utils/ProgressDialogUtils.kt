@@ -1,8 +1,8 @@
 package com.module.common.utils
 
 import android.content.Context
-import com.module.arch.base.BaseRequest
 import com.module.common.widget.ProgressDialog
+import com.module.network.BaseRequest
 
 /**
  * 网络请求加载框

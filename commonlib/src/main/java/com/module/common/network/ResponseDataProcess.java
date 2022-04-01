@@ -3,12 +3,12 @@ package com.module.common.network;
 import android.content.Intent;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.module.arch.base.BaseResponse;
-import com.module.arch.callback.ResponseListener;
 import com.module.arch.utils.GsonUtils;
 import com.module.arch.utils.LogUtils;
 import com.module.common.constant.RouterConstant;
 import com.module.common.store.UserInfo;
+import com.module.network.BaseResponse;
+import com.module.network.ResponseListener;
 
 import java.util.List;
 
