@@ -3,6 +3,7 @@ package com.module.common.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,7 +37,11 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
     private static final int FOOT_TYPE = 2;
     private static final int EMPTY_TYPE = 3;
     private final boolean mIsLoadMore;
-    private View emptyView;
+    /**
+     * 默认为空视图
+     */
+    private boolean hasEmptyView = true;
+    private FrameLayout emptyView;
     /**
      * 数据源
      */
@@ -50,24 +55,6 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
      */
     private OnItemLongClickListener longClickListener;
     private RecyclerView recyclerView;
-    private final View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if (listener != null && v != null && recyclerView != null) {
-                listener.onItemClick(recyclerView, v, (Integer) v.getTag());
-            }
-        }
-    };
-    private final View.OnLongClickListener onLongClickListener = new View.OnLongClickListener() {
-        @Override
-        public boolean onLongClick(View v) {
-            if (longClickListener != null && v != null && recyclerView != null) {
-                longClickListener.onItemLongClick(recyclerView, v, (Integer) v.getTag());
-                return true;
-            }
-            return false;
-        }
-    };
     private int size;
     /**
      * 当前加载状态，默认为加载完成
@@ -82,6 +69,11 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
     @NonNull
     @Override
     public RecyclerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        if (hasEmptyView) {
+            this.emptyView = new FrameLayout(parent.getContext());
+            ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+            this.emptyView.setLayoutParams(layoutParams);
+        }
         if (viewType == EMPTY_TYPE) {
             return new RecyclerHolder(emptyView);
         } else if (viewType == NORMAL_TYPE) {
@@ -94,8 +86,18 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
     @Override
     public void onBindViewHolder(@NonNull final RecyclerHolder holder, int position) {
         holder.itemView.setTag(position);
-        holder.itemView.setOnClickListener(onClickListener);
-        holder.itemView.setOnLongClickListener(onLongClickListener);
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null && v != null && recyclerView != null) {
+                listener.onItemClick(recyclerView, v, (Integer) v.getTag());
+            }
+        });
+        holder.itemView.setOnLongClickListener(v -> {
+            if (longClickListener != null && v != null && recyclerView != null) {
+                longClickListener.onItemLongClick(recyclerView, v, (Integer) v.getTag());
+                return true;
+            }
+            return false;
+        });
         if (NORMAL_TYPE == holder.getItemViewType()) {
             convert(holder.v, list.get(position), position);
         } else {
@@ -203,7 +205,11 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
     protected abstract void convert(ViewBinding viewBinding, T item, int position);
 
     public void setEmptyView(View emptyView) {
-        this.emptyView = emptyView;
+        hasEmptyView = false;
+        this.emptyView = new FrameLayout(emptyView.getContext());
+        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(emptyView.getLayoutParams().width, emptyView.getLayoutParams().height);
+        this.emptyView.setLayoutParams(layoutParams);
+        this.emptyView.addView(emptyView);
     }
 
     public void setListData(List<T> data) {
@@ -213,6 +219,10 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public List<T> getData() {
+        return list;
     }
 
     public void addDataList(List<T> addData) {

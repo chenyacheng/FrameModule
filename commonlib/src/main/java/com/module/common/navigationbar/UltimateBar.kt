@@ -1,7 +1,6 @@
 package com.module.common.navigationbar
 
 import android.app.Activity
-import android.graphics.drawable.Drawable
 import android.view.View
 
 /**
@@ -15,17 +14,18 @@ class UltimateBar private constructor(private val activity: Activity) {
     // 状态栏灰色模式
     private var statusDark: Boolean = false
     // 状态栏背景
-    private var statusDrawable: Drawable? = null
+    private var statusDrawable: Int = 0
+
     // Android 6.0 以下状态栏灰色模式时，状态栏背景
-    private var statusDrawable2: Drawable? = statusDrawable
+    private var statusDrawable2: Int = statusDrawable
     // 是否应用到导航栏
     private var applyNavigation: Boolean = false
     // 导航栏灰色模式
     private var navigationDark: Boolean = false
     // 导航栏背景
-    private var navigationDrawable: Drawable? = null
+    private var navigationDrawable: Int = 0
     // Android 8.0 以下导航栏灰色模式时，导航栏背景
-    private var navigationDrawable2: Drawable? = null
+    private var navigationDrawable2: Int = 0
 
     companion object {
         fun with(activity: Activity): Builder {
@@ -88,13 +88,13 @@ class UltimateBar private constructor(private val activity: Activity) {
     class Builder internal constructor(private val activity: Activity) {
 
         private var statusDark: Boolean = false
-        private var statusDrawable: Drawable? = null
-        private var statusDrawable2: Drawable? = statusDrawable
+        private var statusDrawable: Int = 0
+        private var statusDrawable2: Int = statusDrawable
         private var statusDrawable2HasSet: Boolean = false
         private var applyNavigation: Boolean = false
         private var navigationDark: Boolean = false
-        private var navigationDrawable: Drawable? = null
-        private var navigationDrawable2: Drawable? = navigationDrawable
+        private var navigationDrawable: Int = 0
+        private var navigationDrawable2: Int = navigationDrawable
         private var navigationDrawable2HasSet: Boolean = false
 
         /**
@@ -108,7 +108,7 @@ class UltimateBar private constructor(private val activity: Activity) {
         /**
          * 状态栏背景，默认 null
          */
-        fun statusDrawable(statusDrawable: Drawable?): Builder {
+        fun statusDrawable(statusDrawable: Int): Builder {
             this.statusDrawable = statusDrawable
             if (!statusDrawable2HasSet) this.statusDrawable2 = statusDrawable
             return this
@@ -117,14 +117,14 @@ class UltimateBar private constructor(private val activity: Activity) {
         /**
          * Android 6.0 以下状态栏灰色模式时状态栏颜色
          */
-        fun statusDrawable2(statusDrawable2: Drawable?): Builder {
+        fun statusDrawable2(statusDrawable2: Int): Builder {
             this.statusDrawable2 = statusDrawable2
             statusDrawable2HasSet = true
             return this
         }
 
         /**
-         * 应用到导航栏，默认 flase
+         * 应用到导航栏，默认 false
          */
         fun applyNavigation(applyNavigation: Boolean): Builder {
             this.applyNavigation = applyNavigation
@@ -142,7 +142,7 @@ class UltimateBar private constructor(private val activity: Activity) {
         /**
          * 导航栏背景，默认 null
          */
-        fun navigationDrawable(navigationDrawable: Drawable?): Builder {
+        fun navigationDrawable(navigationDrawable: Int): Builder {
             this.navigationDrawable = navigationDrawable
             if (!navigationDrawable2HasSet) this.navigationDrawable2 = navigationDrawable
             return this
@@ -151,7 +151,7 @@ class UltimateBar private constructor(private val activity: Activity) {
         /**
          * Android 8.0 以下导航栏灰色模式时导航栏颜色
          */
-        fun navigationDrawable2(navigationDrawable2: Drawable?): Builder {
+        fun navigationDrawable2(navigationDrawable2: Int): Builder {
             this.navigationDrawable2 = navigationDrawable2
             navigationDrawable2HasSet = true
             return this

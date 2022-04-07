@@ -3,6 +3,7 @@
 
 ### 项目结构
     baselib       ->    基础模块
+    networklib    ->    网络模块
     commonlib     ->    公共页面，常用的工具类，适配器类等
     home          ->    首页模块
     me            ->    我的模块

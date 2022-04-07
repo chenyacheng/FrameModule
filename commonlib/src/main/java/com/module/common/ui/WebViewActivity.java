@@ -2,8 +2,6 @@ package com.module.common.ui;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
@@ -12,12 +10,11 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.module.common.R;
 import com.module.arch.base.BaseActivity;
 import com.module.arch.utils.LogUtils;
+import com.module.common.R;
 import com.module.common.constant.RouterConstant;
 import com.module.common.databinding.ActivityWebviewBinding;
 import com.module.common.message.SharedViewModel;
@@ -82,10 +79,8 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
         LogUtils.info(getClass().getSimpleName(), "webView页面");
 
         // 设置状态栏
-        Drawable statusDrawable = new ColorDrawable(ContextCompat.getColor(this, R.color.common_ffffffff));
-        Drawable statusDrawable2 = new ColorDrawable(ContextCompat.getColor(this, R.color.common_ff000000));
-        UltimateBar.Companion.with(this).statusDark(true).statusDrawable(statusDrawable)
-                .statusDrawable2(statusDrawable2).create().drawableBar();
+        UltimateBar.Companion.with(this).statusDark(true).statusDrawable(R.color.common_ffffffff)
+                .statusDrawable2(R.color.common_ff000000).create().drawableBar();
 
         toolBar();
 
