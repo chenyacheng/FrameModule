@@ -8,7 +8,6 @@ import androidx.viewpager.widget.PagerAdapter;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bumptech.glide.Glide;
 import com.chenyacheng.snackbar.SnackBarBuilder;
 import com.module.app.databinding.ActivityAdvertisingBinding;
 import com.module.app.databinding.ActivityAdvertisingItemBinding;
@@ -21,6 +20,7 @@ import com.module.common.data.AdvertisingResult;
 import com.module.common.navigationbar.UltimateBar;
 import com.module.common.store.UserInfo;
 import com.module.common.store.UserInfoResult;
+import com.module.common.utils.ImageViewDisplayUtils;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import java.util.ArrayList;
@@ -62,7 +62,7 @@ public class AdvertisingActivity extends BaseActivity<ActivityAdvertisingBinding
             AdvertisingResult advertisingResult = GsonUtils.removeSpaceFromJson(o, AdvertisingResult.class);
             ActivityAdvertisingItemBinding binding = ActivityAdvertisingItemBinding.inflate(getLayoutInflater());
             viewList.add(binding.getRoot());
-            Glide.with(this).load(AppConfig.IMAGE_URL + advertisingResult.getPictureAddress()).into(binding.imageView);
+            ImageViewDisplayUtils.Companion.imageViewNotPlaceholderDisplay(binding.imageView, AppConfig.IMAGE_URL + advertisingResult.getPictureAddress());
             getBinding().viewPager.setAdapter(new ViewPagerAdapter());
             final int[] a = {5};
             getBinding().countDown.setText(5 + "s|跳过");

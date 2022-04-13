@@ -68,12 +68,11 @@ dependencies {
     implementation AndroidX.lifecycle_common_java8
     api AndroidX.viewpager2
     api AndroidX.constraintlayout
-    //api AndroidX.splashscreen
-    api Github.glide
-    annotationProcessor Github.glide_compiler
     // 图片选择器
     api Github.pictureselector
     api Github.snackBar
+    // https://github.com/coil-kt/coil/ 图片加载框架
+    implementation Github.coil
     // 检测内存泄漏
     debugImplementation Squareup.leakcanary_android
     // 阿里路由

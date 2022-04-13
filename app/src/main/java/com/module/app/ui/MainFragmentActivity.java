@@ -1,6 +1,7 @@
 package com.module.app.ui;
 
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -122,6 +123,13 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
             drawableIcon.setBounds(0, 0, drawableIcon.getMinimumWidth(), drawableIcon.getMinimumHeight());
             bottomTabChecked.get(i).setCompoundDrawables(null, drawableIcon, null, null);
         }
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // 当前 activity 被系统回收，不保存状态，清除掉
+        outState.clear();
     }
 
     @Override

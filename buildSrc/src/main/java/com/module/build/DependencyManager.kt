@@ -13,9 +13,9 @@ object Versions {
     const val retrofit = "2.9.0"
     const val okhttp = "4.9.3"
     const val leakcanary_android = "2.7"
-    const val glide = "4.12.0"
     const val pictureselector = "v2.7.3-rc10"
     const val snackBar = "1.2.2"
+    const val coil = "2.0.0-rc02"
     const val arouter = "1.5.2"
 }
 
@@ -47,10 +47,9 @@ object Squareup {
 }
 
 object Github {
-    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
-    const val glide_compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     const val pictureselector = "io.github.lucksiege:pictureselector:${Versions.pictureselector}"
     const val snackBar = "com.github.chenyacheng:SnackBar:${Versions.snackBar}"
+    const val coil = "io.coil-kt:coil:${Versions.coil}"
 }
 
 object Alibaba {
