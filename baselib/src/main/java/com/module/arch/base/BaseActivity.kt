@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
+import com.module.arch.utils.LogUtils
 
 /**
  * activity基类
@@ -25,6 +26,7 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         setContentView(viewBinding!!.root)
         initViewModel()
         init()
+        LogUtils.info("类名", javaClass.simpleName)
     }
 
     override fun onDestroy() {

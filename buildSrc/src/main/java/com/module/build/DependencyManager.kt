@@ -1,7 +1,7 @@
 package com.module.build
 
 object Versions {
-    const val gson = "2.8.8"
+    const val gson = "2.9.0"
     const val material = "1.4.0"
     const val zxing = "3.4.1"
     const val appcompat = "1.4.1"

@@ -8,6 +8,7 @@ import okhttp3.Response
 import okio.Buffer
 import java.net.URLDecoder
 import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets
 import java.util.*
 
 /**
@@ -19,14 +20,14 @@ import java.util.*
 class RequestEncryptInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        val charset = Charset.forName("UTF-8")
+        val charset = Charset.forName(StandardCharsets.UTF_8.toString())
         val requestBody = request.body
         if (null != requestBody) {
             val contentType = requestBody.contentType()
             try {
                 val buffer = Buffer()
                 requestBody.writeTo(buffer)
-                val requestData = URLDecoder.decode(buffer.readString(charset).trim(), "UTF-8")
+                val requestData = URLDecoder.decode(buffer.readString(charset).trim(), StandardCharsets.UTF_8.toString())
                 buffer.close()
                 // 调用加密方法
                 val encryptData = AES.encryptString(requestData)
