@@ -7,6 +7,7 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewbinding.ViewBinding;
 
 import com.module.common.databinding.RecyclerFootviewLayoutBinding;
@@ -77,7 +78,21 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
         if (viewType == EMPTY_TYPE) {
             return new RecyclerHolder(emptyView);
         } else if (viewType == NORMAL_TYPE) {
-            return new RecyclerHolder(getViewBinding(LayoutInflater.from(parent.getContext()), parent));
+            ViewBinding viewBinding = getViewBinding(LayoutInflater.from(parent.getContext()), parent);
+            RecyclerHolder recyclerHolder = new RecyclerHolder(viewBinding);
+            viewBinding.getRoot().setOnClickListener(v -> {
+                if (listener != null && v != null && recyclerView != null) {
+                    listener.onItemClick(recyclerView, viewBinding.getRoot(), recyclerHolder.getBindingAdapterPosition());
+                }
+            });
+            viewBinding.getRoot().setOnLongClickListener(v -> {
+                if (longClickListener != null && v != null && recyclerView != null) {
+                    longClickListener.onItemLongClick(recyclerView, viewBinding.getRoot(), recyclerHolder.getBindingAdapterPosition());
+                    return true;
+                }
+                return false;
+            });
+            return recyclerHolder;
         } else {
             return new RecyclerHolder(RecyclerFootviewLayoutBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false));
         }
@@ -85,19 +100,6 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerHolder holder, int position) {
-        holder.itemView.setTag(position);
-        holder.itemView.setOnClickListener(v -> {
-            if (listener != null && v != null && recyclerView != null) {
-                listener.onItemClick(recyclerView, v, (Integer) v.getTag());
-            }
-        });
-        holder.itemView.setOnLongClickListener(v -> {
-            if (longClickListener != null && v != null && recyclerView != null) {
-                longClickListener.onItemLongClick(recyclerView, v, (Integer) v.getTag());
-                return true;
-            }
-            return false;
-        });
         if (NORMAL_TYPE == holder.getItemViewType()) {
             convert(holder.v, list.get(position), position);
         } else {
@@ -184,6 +186,18 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
     public void onDetachedFromRecyclerView(@NonNull RecyclerView recyclerView) {
         super.onDetachedFromRecyclerView(recyclerView);
         this.recyclerView = null;
+    }
+
+    @Override
+    public void onViewAttachedToWindow(@NonNull RecyclerHolder holder) {
+        super.onViewAttachedToWindow(holder);
+        ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+        if (layoutParams instanceof StaggeredGridLayoutManager.LayoutParams) {
+            // 如果是上拉加载更多类型，则设置setFullSpan为true，那么它就会占一行
+            if (holder.getItemViewType() == FOOT_TYPE) {
+                ((StaggeredGridLayoutManager.LayoutParams) layoutParams).setFullSpan(true);
+            }
+        }
     }
 
     /**
