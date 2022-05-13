@@ -1,14 +1,13 @@
 package com.module.common.request;
 
 import com.module.common.data.CaptchaBean;
-import com.module.common.data.RegisterBean;
-import com.module.common.network.ProtectedUnPeekLiveData;
-import com.module.common.network.UnPeekLiveData;
-import com.module.common.repository.CommonRepository;
 import com.module.common.data.LoginBean;
+import com.module.common.data.RegisterBean;
 import com.module.common.data.UpdateUserPwdBean;
-import com.module.common.network.ResponseDataProcessListener;
 import com.module.common.network.EventProcess;
+import com.module.common.network.ResponseDataProcessListener;
+import com.module.common.network.SingleLiveData;
+import com.module.common.repository.CommonRepository;
 
 /**
  * 共用页面的请求
@@ -18,27 +17,27 @@ import com.module.common.network.EventProcess;
  */
 public class CommonRequest extends EventProcess {
 
-    private final UnPeekLiveData<Object> captchaLiveData = new UnPeekLiveData<>();
+    private final SingleLiveData<Object> captchaLiveData = new SingleLiveData<>();
 
-    private final UnPeekLiveData<Object> registerLiveData = new UnPeekLiveData<>();
+    private final SingleLiveData<Object> registerLiveData = new SingleLiveData<>();
 
-    private final UnPeekLiveData<Object> loginLiveData = new UnPeekLiveData<>();
+    private final SingleLiveData<Object> loginLiveData = new SingleLiveData<>();
 
-    private final UnPeekLiveData<Object> updateUserPasswordLiveData = new UnPeekLiveData<>();
+    private final SingleLiveData<Object> updateUserPasswordLiveData = new SingleLiveData<>();
 
-    public ProtectedUnPeekLiveData<Object> getCaptchaLiveData() {
+    public SingleLiveData<Object> getCaptchaLiveData() {
         return captchaLiveData;
     }
 
-    public ProtectedUnPeekLiveData<Object> getRegisterLiveData() {
+    public SingleLiveData<Object> getRegisterLiveData() {
         return registerLiveData;
     }
 
-    public ProtectedUnPeekLiveData<Object> getLoginLiveData() {
+    public SingleLiveData<Object> getLoginLiveData() {
         return loginLiveData;
     }
 
-    public ProtectedUnPeekLiveData<Object> getUpdateUserPasswordLiveData() {
+    public SingleLiveData<Object> getUpdateUserPasswordLiveData() {
         return updateUserPasswordLiveData;
     }
 
@@ -47,6 +46,11 @@ public class CommonRequest extends EventProcess {
             @Override
             public void onSuccess(Object o) {
                 captchaLiveData.postValue(o);
+            }
+
+            @Override
+            public void onSuccessNoData(String s) {
+                messageLiveData.postValue(s);
             }
 
             @Override
@@ -64,6 +68,11 @@ public class CommonRequest extends EventProcess {
             }
 
             @Override
+            public void onSuccessNoData(String s) {
+                messageLiveData.postValue(s);
+            }
+
+            @Override
             public void onFailure(String s) {
                 messageLiveData.postValue(s);
             }
@@ -78,6 +87,11 @@ public class CommonRequest extends EventProcess {
             }
 
             @Override
+            public void onSuccessNoData(String s) {
+                messageLiveData.postValue(s);
+            }
+
+            @Override
             public void onFailure(String s) {
                 messageLiveData.postValue(s);
             }
@@ -89,6 +103,11 @@ public class CommonRequest extends EventProcess {
             @Override
             public void onSuccess(Object o) {
                 updateUserPasswordLiveData.postValue(o);
+            }
+
+            @Override
+            public void onSuccessNoData(String s) {
+                messageLiveData.postValue(s);
             }
 
             @Override

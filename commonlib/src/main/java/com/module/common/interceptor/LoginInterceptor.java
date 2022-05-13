@@ -32,6 +32,7 @@ public class LoginInterceptor implements IInterceptor {
                 // 不需要登录的直接进入这个页面
                 case RouterConstant.PATH_COMMON_LOGIN_ACTIVITY:
                 case RouterConstant.PATH_APP_ADVERTISING_ACTIVITY:
+                case RouterConstant.PATH_APP_MAIN_FRAGMENT_ACTIVITY:
                     callback.onContinue(postcard);
                     break;
                 // 需要登录的直接拦截下来

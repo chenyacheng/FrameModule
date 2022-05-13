@@ -1,10 +1,14 @@
 package com.module.common.utils
 
 import android.graphics.PointF
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import androidx.core.graphics.drawable.toBitmap
+import coil.imageLoader
 import coil.load
+import coil.request.ImageRequest
+import coil.target.ImageViewTarget
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
 import com.luck.picture.lib.listener.OnImageCompleteCallback
@@ -90,16 +94,19 @@ class ImageViewDisplayUtils private constructor() {
             longImageView: SubsamplingScaleImageView,
             callback: OnImageCompleteCallback?
         ) {
-            imageView.load(url) {
-                target(
-                    onStart = {
+            val imageLoader = imageView.context.imageLoader
+            val request = ImageRequest.Builder(imageView.context)
+                .data(url)
+                .target(object : ImageViewTarget(imageView) {
+                    override fun onStart(placeholder: Drawable?) {
+                        super.onStart(placeholder)
                         callback?.onShowLoading()
+                    }
 
-                    },
-                    onSuccess = {
+                    override fun onSuccess(result: Drawable) {
+                        super.onSuccess(result)
                         callback?.onHideLoading()
-                        val eqLongImage =
-                            MediaUtils.isLongImg(it.toBitmap().width, it.toBitmap().height)
+                        val eqLongImage = MediaUtils.isLongImg(result.toBitmap().width, result.toBitmap().height)
                         longImageView.visibility = if (eqLongImage) View.VISIBLE else View.GONE
                         imageView.visibility = if (eqLongImage) View.GONE else View.VISIBLE
                         if (eqLongImage) {
@@ -110,19 +117,51 @@ class ImageViewDisplayUtils private constructor() {
                             longImageView.setMinimumScaleType(SubsamplingScaleImageView.SCALE_TYPE_CENTER_CROP)
                             longImageView.setDoubleTapZoomDpi(SubsamplingScaleImageView.ZOOM_FOCUS_CENTER)
                             longImageView.setImage(
-                                ImageSource.cachedBitmap(it.toBitmap()),
+                                ImageSource.cachedBitmap(result.toBitmap()),
                                 ImageViewState(0f, PointF(0f, 0f), 0)
                             )
                         } else {
                             // 普通图片
-                            imageView.setImageBitmap(it.toBitmap())
+                            imageView.setImageBitmap(result.toBitmap())
                         }
-                    },
-                    onError = {
+                    }
+
+                    override fun onError(error: Drawable?) {
+                        super.onError(error)
                         callback?.onHideLoading()
                     }
-                )
-            }
+                })
+                .build()
+            imageLoader.enqueue(request)
+        }
+
+        fun imageViewDisplay4(
+            imageView: ImageView,
+            url: String
+        ) {
+            val imageLoader = imageView.context.imageLoader
+            val request = ImageRequest.Builder(imageView.context)
+                .data(url)
+                .placeholder(R.drawable.default_picture)
+                .error(R.drawable.default_picture)
+                .target(object : ImageViewTarget(imageView) {
+                    override fun onSuccess(result: Drawable) {
+                        super.onSuccess(result)
+                        callback?.widthAndHeight(result.toBitmap().width, result.toBitmap().height)
+                    }
+                })
+                .build()
+            imageLoader.enqueue(request)
+        }
+
+        var callback: CallbackListener? = null
+
+        fun setCallbackListener(listener: CallbackListener) {
+            callback = listener
+        }
+
+        interface CallbackListener {
+            fun widthAndHeight(width: Int, height: Int)
         }
     }
 }

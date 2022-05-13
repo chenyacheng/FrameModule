@@ -2,6 +2,9 @@ package com.module.network;
 
 import android.util.Log;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.ToNumberPolicy;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
@@ -73,8 +76,8 @@ public class BaseApi {
                 .baseUrl(baseUrl)
                 // 请求结果转换为基本类型，一般为String
                 .addConverterFactory(ScalarsConverterFactory.create())
-                // 请求的结果转为实体类
-                .addConverterFactory(GsonConverterFactory.create())
+                // 请求的结果转为实体类，防止 int 类型自动转成 double 类型
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setObjectToNumberStrategy(ToNumberPolicy.LAZILY_PARSED_NUMBER).serializeNulls().create()))
                 .build();
     }
 

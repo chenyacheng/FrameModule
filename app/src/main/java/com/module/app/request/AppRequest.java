@@ -1,10 +1,9 @@
 package com.module.app.request;
 
 import com.module.app.repository.AppRepository;
-import com.module.common.network.ProtectedUnPeekLiveData;
-import com.module.common.network.ResponseDataProcessListener;
-import com.module.common.network.UnPeekLiveData;
 import com.module.common.network.EventProcess;
+import com.module.common.network.ResponseDataProcessListener;
+import com.module.common.network.SingleLiveData;
 
 /**
  * App页面的请求
@@ -14,9 +13,9 @@ import com.module.common.network.EventProcess;
  */
 public class AppRequest extends EventProcess {
 
-    private final UnPeekLiveData<Object> advertisingLiveData = new UnPeekLiveData<>();
+    private final SingleLiveData<Object> advertisingLiveData = new SingleLiveData<>();
 
-    public ProtectedUnPeekLiveData<Object> getAdvertisingLiveData() {
+    public SingleLiveData<Object> getAdvertisingLiveData() {
         return advertisingLiveData;
     }
 
@@ -25,6 +24,11 @@ public class AppRequest extends EventProcess {
             @Override
             public void onSuccess(Object o) {
                 advertisingLiveData.postValue(o);
+            }
+
+            @Override
+            public void onSuccessNoData(String s) {
+                messageLiveData.postValue(s);
             }
 
             @Override

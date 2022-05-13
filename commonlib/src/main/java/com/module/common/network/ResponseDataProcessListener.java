@@ -15,6 +15,13 @@ public interface ResponseDataProcessListener {
     void onSuccess(Object o);
 
     /**
+     * 响应成功，但没有返回 data 字段，用于 {"code":"200","msg":"暂无数据"} 这种情况下，提示给用户
+     *
+     * @param s 返回String的对象
+     */
+    void onSuccessNoData(String s);
+
+    /**
      * 响应失败
      *
      * @param s 返回String的对象

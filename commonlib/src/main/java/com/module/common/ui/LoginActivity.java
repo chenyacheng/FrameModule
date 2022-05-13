@@ -23,10 +23,10 @@ import com.module.common.navigationbar.UltimateBar;
 public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     /**
-     * 由于顶号，会设置当前的值为 true
+     * 出现顶号时，字段不会为空
      */
     @Autowired
-    public boolean accountExceptionTips = false;
+    public String accountExceptionTips = "";
     private boolean pwdShow = false;
     private CommonViewModel viewModel;
     private SharedViewModel sharedViewModel;
@@ -48,8 +48,8 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
     protected void init() {
         // 路由传递参数，需要初始化
         ARouter.getInstance().inject(this);
-        if (accountExceptionTips) {
-            SnackBarBuilder.getInstance().builderLong(this, "您的账号已在其他设备登录，如不是本人登录请尽快更改密码");
+        if (!"".equals(accountExceptionTips)) {
+            SnackBarBuilder.getInstance().builderLong(this, accountExceptionTips);
         }
         LogUtils.info(getClass().getSimpleName(), "登录页");
         // 设置状态栏

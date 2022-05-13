@@ -17,9 +17,9 @@ import com.module.network.BaseRequest;
  */
 public class EventProcess implements DefaultLifecycleObserver {
 
-    protected final UnPeekLiveData<String> messageLiveData = new UnPeekLiveData<>();
+    protected final SingleLiveData<String> messageLiveData = new SingleLiveData<>();
 
-    public ProtectedUnPeekLiveData<String> getMessageLiveData() {
+    public SingleLiveData<String> getMessageLiveData() {
         return messageLiveData;
     }
 

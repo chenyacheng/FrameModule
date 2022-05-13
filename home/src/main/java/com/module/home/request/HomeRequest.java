@@ -1,10 +1,9 @@
 package com.module.home.request;
 
 import com.module.common.data.CaptchaBean;
-import com.module.common.network.ProtectedUnPeekLiveData;
-import com.module.common.network.ResponseDataProcessListener;
 import com.module.common.network.EventProcess;
-import com.module.common.network.UnPeekLiveData;
+import com.module.common.network.ResponseDataProcessListener;
+import com.module.common.network.SingleLiveData;
 import com.module.home.repository.HomeRepository;
 
 /**
@@ -12,9 +11,9 @@ import com.module.home.repository.HomeRepository;
  */
 public class HomeRequest extends EventProcess {
 
-    private final UnPeekLiveData<Object> captchaLiveData = new UnPeekLiveData<>();
+    private final SingleLiveData<Object> captchaLiveData = new SingleLiveData<>();
 
-    public ProtectedUnPeekLiveData<Object> getCaptchaLiveData() {
+    public SingleLiveData<Object> getCaptchaLiveData() {
         return captchaLiveData;
     }
 
@@ -23,6 +22,11 @@ public class HomeRequest extends EventProcess {
             @Override
             public void onSuccess(Object o) {
                 captchaLiveData.postValue(o);
+            }
+
+            @Override
+            public void onSuccessNoData(String s) {
+                messageLiveData.postValue(s);
             }
 
             @Override

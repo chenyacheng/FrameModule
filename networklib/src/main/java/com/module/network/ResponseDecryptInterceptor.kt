@@ -24,7 +24,7 @@ class ResponseDecryptInterceptor : Interceptor {
                 val responseBody = response.body
                 if (null != responseBody) {
                     val oldResponseBodyStr = responseBody.string()
-                    // 防止 int 类型自动转成 double
+                    // 防止 int 类型自动转成 double 类型
                     val gson = GsonBuilder().setObjectToNumberStrategy(ToNumberPolicy.LAZILY_PARSED_NUMBER).serializeNulls().create()
                     val bean = gson.fromJson(oldResponseBodyStr, BaseResponse::class.java)
                     val contentType = responseBody.contentType()
