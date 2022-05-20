@@ -91,8 +91,25 @@ public class BaseApi {
             level = HttpLoggingInterceptor.Level.NONE;
         }
         // 新建log拦截器
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> Log.v("LoggingMessage", message));
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor(message -> showLogCompletion("LoggingMessage", message, 1000));
         return loggingInterceptor.setLevel(level);
+    }
+
+    private void showLogCompletion(String tag, String log, int showCount) {
+        if (log.length() > showCount) {
+            String show = log.substring(0, showCount);
+            Log.v(tag, show);
+            // 剩下的文本还是大于规定长度
+            if ((log.length() - showCount) > showCount) {
+                String partLog = log.substring(showCount);
+                showLogCompletion(tag, partLog, showCount);
+            } else {
+                String surplusLog = log.substring(showCount);
+                Log.v(tag, surplusLog);
+            }
+        } else {
+            Log.v(tag, log);
+        }
     }
 
     private enum SingletonEnum {
