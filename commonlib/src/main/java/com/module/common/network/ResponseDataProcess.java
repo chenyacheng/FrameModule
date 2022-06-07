@@ -52,8 +52,7 @@ public class ResponseDataProcess implements ResponseListener {
                 responseDataProcessListener.onSuccessNoData(baseResponse.getMessage());
             }
         } else {
-            ExceptionHandleUtils exceptionHandleUtils = new ExceptionHandleUtils(baseResponse.getMessage());
-            responseDataProcessListener.onFailure(exceptionHandleUtils.getMessage());
+            responseDataProcessListener.onFailure(baseResponse.getMessage());
         }
     }
 

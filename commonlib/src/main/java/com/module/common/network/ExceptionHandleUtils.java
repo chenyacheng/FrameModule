@@ -7,7 +7,9 @@ import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
+import okio.BufferedSource;
 import retrofit2.HttpException;
+import retrofit2.Response;
 
 /**
  * 失败处理类：1.异常2.错误
@@ -38,6 +40,14 @@ public class ExceptionHandleUtils {
         } else if (e instanceof SocketTimeoutException) {
             return new ExceptionHandleUtils("请求超时");
         } else if (e instanceof HttpException) {
+            Response<?> response = ((HttpException) e).response();
+            if (null != response) {
+                if (null == response.errorBody()) {
+                    return new ExceptionHandleUtils("服务暂不可用");
+                }
+                BufferedSource bufferedSource = response.errorBody().source();
+                return new ExceptionHandleUtils(bufferedSource.toString());
+            }
             return new ExceptionHandleUtils("服务暂不可用");
         } else if (e instanceof SocketException) {
             return new ExceptionHandleUtils("取消网络请求");
