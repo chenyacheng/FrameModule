@@ -1,7 +1,7 @@
 package com.module.home.request;
 
 import com.module.common.data.CaptchaBean;
-import com.module.common.network.EventProcess;
+import com.module.common.network.BaseViewModel;
 import com.module.common.network.ResponseDataProcessListener;
 import com.module.common.network.SingleLiveData;
 import com.module.home.repository.HomeRepository;
@@ -9,7 +9,7 @@ import com.module.home.repository.HomeRepository;
 /**
  * @author BD
  */
-public class HomeRequest extends EventProcess {
+public class HomeViewModel extends BaseViewModel {
 
     private final SingleLiveData<Object> captchaLiveData = new SingleLiveData<>();
 

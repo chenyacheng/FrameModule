@@ -20,6 +20,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import com.module.app.R;
 import com.module.app.databinding.ActivityMainFragmentBinding;
 import com.module.app.databinding.TabMainBottomLayoutBinding;
+import com.module.app.request.AppViewModel;
 import com.module.arch.base.BaseActivity;
 import com.module.home.ui.fragment.HomeFragment;
 import com.module.me.ui.fragment.MeFragment;

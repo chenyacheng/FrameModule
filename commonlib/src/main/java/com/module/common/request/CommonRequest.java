@@ -4,7 +4,7 @@ import com.module.common.data.CaptchaBean;
 import com.module.common.data.LoginBean;
 import com.module.common.data.RegisterBean;
 import com.module.common.data.UpdateUserPwdBean;
-import com.module.common.network.EventProcess;
+import com.module.common.network.BaseViewModel;
 import com.module.common.network.ResponseDataProcessListener;
 import com.module.common.network.SingleLiveData;
 import com.module.common.repository.CommonRepository;
@@ -15,7 +15,7 @@ import com.module.common.repository.CommonRepository;
  * @author BD
  * @date 2022/01/05
  */
-public class CommonRequest extends EventProcess {
+public class CommonRequest extends BaseViewModel {
 
     private final SingleLiveData<Object> captchaLiveData = new SingleLiveData<>();
 

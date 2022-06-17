@@ -1,17 +1,14 @@
 package com.module.app.request;
 
 import com.module.app.repository.AppRepository;
-import com.module.common.network.EventProcess;
+import com.module.common.network.BaseViewModel;
 import com.module.common.network.ResponseDataProcessListener;
 import com.module.common.network.SingleLiveData;
 
 /**
- * App页面的请求
- *
  * @author BD
- * @date 2021/11/22
  */
-public class AppRequest extends EventProcess {
+public class AppViewModel extends BaseViewModel {
 
     private final SingleLiveData<Object> advertisingLiveData = new SingleLiveData<>();
 

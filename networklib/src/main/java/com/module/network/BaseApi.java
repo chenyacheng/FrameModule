@@ -40,6 +40,34 @@ public class BaseApi {
     }
 
     /**
+     * 无超时及缓存策略的Retrofit
+     *
+     * @param baseUrl 基本url
+     * @return Retrofit的实例
+     */
+    public Retrofit getSimpleRetrofit(String baseUrl) {
+        return new Retrofit.Builder()
+                .baseUrl(baseUrl)
+                .client(getOkHttpClient())
+                // 请求结果转换为基本类型，一般为String
+                .addConverterFactory(ScalarsConverterFactory.create())
+                // 请求的结果转为实体类
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+    }
+
+    private OkHttpClient getOkHttpClient() {
+        // 定制OkHttp
+        OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
+        // OkHttp进行添加拦截器loggingInterceptor
+        httpClientBuilder.addInterceptor(getLevel());
+        httpClientBuilder.connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS)
+                .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
+                .writeTimeout(WRITE_TIME_OUT, TimeUnit.SECONDS);
+        return httpClientBuilder.build();
+    }
+
+    /**
      * 使用OkHttp配置的Retrofit
      *
      * @param baseUrl 基本url

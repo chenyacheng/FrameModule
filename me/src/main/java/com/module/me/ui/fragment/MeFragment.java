@@ -9,7 +9,7 @@ import androidx.annotation.Nullable;
 import com.module.arch.base.BaseLazyFragment;
 import com.module.arch.utils.LogUtils;
 import com.module.me.databinding.MeFragmentMeMainBinding;
-import com.module.me.ui.MeViewModel;
+import com.module.me.request.MeViewModel;
 
 /**
  * @author BD

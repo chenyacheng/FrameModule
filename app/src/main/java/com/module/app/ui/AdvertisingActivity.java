@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.chenyacheng.snackbar.SnackBarBuilder;
 import com.module.app.databinding.ActivityAdvertisingBinding;
 import com.module.app.databinding.ActivityAdvertisingItemBinding;
+import com.module.app.request.AppViewModel;
 import com.module.arch.base.BaseActivity;
 import com.module.arch.utils.GsonUtils;
 import com.module.arch.utils.LogUtils;
@@ -47,7 +48,7 @@ public class AdvertisingActivity extends BaseActivity<ActivityAdvertisingBinding
     @Override
     protected void initViewModel() {
         appViewModel = getActivityScopeViewModel(AppViewModel.class);
-        getLifecycle().addObserver(appViewModel.appRequest);
+        getLifecycle().addObserver(appViewModel);
     }
 
     @Override
@@ -56,9 +57,9 @@ public class AdvertisingActivity extends BaseActivity<ActivityAdvertisingBinding
         // 设置状态栏
         UltimateBar.Companion.with(this).create().immersionBar();
 
-        appViewModel.appRequest.getMessageLiveData().observe(this, s -> SnackBarBuilder.getInstance().builderLong(this, s));
-        appViewModel.appRequest.advertising();
-        appViewModel.appRequest.getAdvertisingLiveData().observe(this, o -> {
+        appViewModel.getMessageLiveData().observe(this, s -> SnackBarBuilder.getInstance().builderLong(this, s));
+        appViewModel.advertising();
+        appViewModel.getAdvertisingLiveData().observe(this, o -> {
             AdvertisingResult advertisingResult = GsonUtils.removeSpaceFromJson(o, AdvertisingResult.class);
             ActivityAdvertisingItemBinding binding = ActivityAdvertisingItemBinding.inflate(getLayoutInflater());
             viewList.add(binding.getRoot());

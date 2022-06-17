@@ -3,6 +3,7 @@ package com.module.common.network;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModel;
 
 import com.module.common.utils.ProgressDialogUtils;
 import com.module.network.BaseRequest;
@@ -15,7 +16,7 @@ import com.module.network.BaseRequest;
  * @author bd
  * @date 2021/11/15
  */
-public class EventProcess implements DefaultLifecycleObserver {
+public class BaseViewModel extends ViewModel implements DefaultLifecycleObserver {
 
     protected final SingleLiveData<String> messageLiveData = new SingleLiveData<>();
 
