@@ -17,6 +17,8 @@ public class RouterConstant {
     public static final String PATH_APP_MAIN_FRAGMENT_ACTIVITY = "/app/MainFragmentActivity";
     public static final String PATH_APP_ADVERTISING_ACTIVITY = "/app/AdvertisingActivity";
 
+    public static final String PATH_ME_AMOUNT_EDIT_TEXT_ACTIVITY = "/me/AmountEditTextActivity";
+
     private RouterConstant() {
         throw new IllegalStateException("Utility class");
     }

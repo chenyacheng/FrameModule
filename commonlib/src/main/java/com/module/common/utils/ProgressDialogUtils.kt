@@ -25,7 +25,7 @@ class ProgressDialogUtils {
             pd!!.setCancelable(cancelable)
             if (cancelable) {
                 pd!!.setOnCancelListener {
-                    BaseRequest.getInstance().cancel()
+                    BaseRequest.instance.cancel()
                     hideProgress()
                 }
             }

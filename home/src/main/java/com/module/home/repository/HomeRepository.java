@@ -2,7 +2,6 @@ package com.module.home.repository;
 
 import com.module.common.AppConfig;
 import com.module.common.api.CommonApi;
-import com.module.common.data.CaptchaBean;
 import com.module.common.network.ResponseDataProcess;
 import com.module.common.network.ResponseDataProcessListener;
 import com.module.network.BaseApi;
@@ -17,8 +16,8 @@ public class HomeRepository {
         return HomeRepository.SingletonEnum.INSTANCE.getInstance();
     }
 
-    public void captcha(CaptchaBean bean, ResponseDataProcessListener responseDataProcessListener) {
-        BaseRequest.getInstance().executeAsyncCallback(BaseApi.getInstance().getRetrofit(AppConfig.BASE_URL).create(CommonApi.class).captcha(bean), new ResponseDataProcess(responseDataProcessListener));
+    public void test(ResponseDataProcessListener responseDataProcessListener) {
+        BaseRequest.getInstance().executeAsyncCallback(BaseApi.getInstance().getRetrofit(AppConfig.BASE_URL).create(CommonApi.class).test(), new ResponseDataProcess(responseDataProcessListener));
     }
 
     private enum SingletonEnum {

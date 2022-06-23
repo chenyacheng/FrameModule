@@ -33,6 +33,7 @@ public class LoginInterceptor implements IInterceptor {
                 case RouterConstant.PATH_COMMON_LOGIN_ACTIVITY:
                 case RouterConstant.PATH_APP_ADVERTISING_ACTIVITY:
                 case RouterConstant.PATH_APP_MAIN_FRAGMENT_ACTIVITY:
+                case RouterConstant.PATH_ME_AMOUNT_EDIT_TEXT_ACTIVITY:
                     callback.onContinue(postcard);
                     break;
                 // 需要登录的直接拦截下来

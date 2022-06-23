@@ -15,6 +15,7 @@ public class UrlConstant {
     public static final String UPLOAD_USER_PORTRAIT = "/user/uploadUserPortrait";
     public static final String QUERY_START_PAGE = "/content/queryStartPage";
     public static final String VERIFY_VERSION = "/system/verifyVersion";
+    public static final String TEST = "/system/test";
 
     private UrlConstant() {
         throw new IllegalStateException("Utility class");

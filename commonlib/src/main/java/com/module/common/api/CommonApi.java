@@ -24,6 +24,9 @@ import retrofit2.http.Part;
  */
 public interface CommonApi {
 
+    @POST(UrlConstant.TEST)
+    Call<Object> test();
+
     /**
      * 验证码
      *

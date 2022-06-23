@@ -43,7 +43,7 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
      */
     private final List<TextView> bottomTabChecked = new ArrayList<>(2);
     private final String[] titles = {"首页", "我的"};
-    private final int[] colors = {com.module.common.R.color.common_ff717071, com.module.common.R.color.common_ff717071};
+    private final int[] colors = {com.module.common.R.color.common_ff009944, com.module.common.R.color.common_ff717071};
     private final int[] normalIcon = {R.drawable.home_icon_normal, R.drawable.me_icon_normal};
     private final int[] selectedIcon = {R.drawable.home_icon_selected, R.drawable.me_icon_selected};
     private final List<Fragment> fragmentList = new ArrayList<>(2);

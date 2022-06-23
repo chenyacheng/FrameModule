@@ -4,6 +4,7 @@ import com.module.build.BuildConfig
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -16,12 +17,6 @@ android {
         versionName BuildConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-            }
-        }
     }
 
     // signingConfigs要放在buildTypes前面
@@ -74,6 +69,12 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 static def releaseTime() {
     def date = new Date()
     return date.format("yyyy-MM-dd_HHmmss")
@@ -89,6 +90,6 @@ dependencies {
     } else {
         implementation project(':home')
         implementation project(':me')
-        annotationProcessor Alibaba.arouter_compiler
+        kapt Alibaba.arouter_compiler
     }
 }

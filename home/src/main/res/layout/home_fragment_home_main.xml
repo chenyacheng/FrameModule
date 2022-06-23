@@ -5,22 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/common_ffF2F2F2">
-
-
-
-
-
-
 
         <com.module.common.widget.HeadToolBar
             android:id="@+id/toolbar_head"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    </FrameLayout>
+        <com.google.android.material.button.MaterialButton
+            style="@style/button_style_material"
+            android:id="@+id/btn"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:backgroundTint="@color/common_ff00883D"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            app:cornerRadius="10dp"
+            android:text="网络测试一下"/>
+
+    </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

@@ -1,6 +1,5 @@
 package com.module.home.request;
 
-import com.module.common.data.CaptchaBean;
 import com.module.common.network.BaseViewModel;
 import com.module.common.network.ResponseDataProcessListener;
 import com.module.common.network.SingleLiveData;
@@ -11,17 +10,13 @@ import com.module.home.repository.HomeRepository;
  */
 public class HomeViewModel extends BaseViewModel {
 
-    private final SingleLiveData<Object> captchaLiveData = new SingleLiveData<>();
+    private final SingleLiveData<Object> testLiveData = new SingleLiveData<>();
 
-    public SingleLiveData<Object> getCaptchaLiveData() {
-        return captchaLiveData;
-    }
-
-    public void captcha(CaptchaBean bean) {
-        HomeRepository.getInstance().captcha(bean, new ResponseDataProcessListener() {
+    public void test() {
+        HomeRepository.getInstance().test(new ResponseDataProcessListener() {
             @Override
             public void onSuccess(Object o) {
-                captchaLiveData.postValue(o);
+                testLiveData.postValue(o);
             }
 
             @Override
@@ -34,5 +29,9 @@ public class HomeViewModel extends BaseViewModel {
                 messageLiveData.postValue(s);
             }
         });
+    }
+
+    public SingleLiveData<Object> getTest() {
+        return testLiveData;
     }
 }

@@ -12,6 +12,7 @@ import java.text.DecimalFormat;
 public class DecimalFormatUtils {
 
     private DecimalFormatUtils() {
+        throw new IllegalStateException("Utility class");
     }
 
     public static String numberFormat(double number) {

@@ -23,7 +23,7 @@ public class ExceptionHandleUtils {
 
     private final String message;
 
-    public ExceptionHandleUtils(String message) {
+    private ExceptionHandleUtils(String message) {
         this.message = message;
     }
 
@@ -34,7 +34,7 @@ public class ExceptionHandleUtils {
     public static ExceptionHandleUtils handleException(Throwable e) {
         CrashReport.postCatchedException(e);
         if (e instanceof UnknownHostException) {
-            return new ExceptionHandleUtils("请打开网络");
+            return new ExceptionHandleUtils("当前连接的域名无效或过期");
         } else if (e instanceof ConnectException) {
             return new ExceptionHandleUtils("连接失败");
         } else if (e instanceof SocketTimeoutException) {

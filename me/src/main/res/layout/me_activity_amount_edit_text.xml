@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/common_ffffffff"
+    android:layout_height="match_parent">
+
+    <com.module.common.widget.HeadToolBar
+        android:id="@+id/toolbar_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:background="@color/common_ffDBDCDC"
+        android:layout_marginTop="70dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/symbol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/common_ff00883D"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/et_amount"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:background="@null"
+            android:hint="请输入充值金额（元）"
+            android:inputType="numberDecimal"
+            android:lines="1"
+            android:maxLength="10"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:textColor="@color/common_ff00883D"
+            android:textColorHint="@color/common_ffffffff"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn1"
+        style="@style/button_style_material"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom"
+        android:text="充值"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/common_ff00883D"
+        app:cornerRadius="10dp" />
+
+</FrameLayout>
