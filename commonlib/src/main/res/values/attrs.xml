@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="pressedBackground" format="color|reference" />
+    <attr name="pressedAlpha" format="float" />
+
+    <declare-styleable name="TintLinearLayout">
+        <attr name="pressedBackground" />
+        <attr name="pressedAlpha" />
+    </declare-styleable>
+
+    <declare-styleable name="TintTextView">
+        <attr name="pressedBackground" />
+        <attr name="pressedAlpha" />
+    </declare-styleable>
+
+    <declare-styleable name="AutoFixLinearLayout">
+        <attr name="roundCorner" format="integer" />
+    </declare-styleable>
+
+</resources>

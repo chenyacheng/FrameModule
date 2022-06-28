@@ -6,10 +6,10 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/common_ffF2F2F2">
+        android:background="@color/common_ffF2F2F2"
+        android:orientation="vertical">
 
         <com.module.common.widget.HeadToolBar
             android:id="@+id/toolbar_head"
@@ -17,16 +17,50 @@
             android:layout_height="wrap_content" />
 
         <com.google.android.material.button.MaterialButton
-            style="@style/button_style_material"
             android:id="@+id/btn"
-            android:layout_margin="10dp"
+            style="@style/button_style_material"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:backgroundTint="@color/common_ff00883D"
+            android:layout_margin="10dp"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            app:cornerRadius="10dp"
-            android:text="网络测试一下"/>
+            android:text="网络测试一下"
+            app:backgroundTint="@color/common_ff00883D"
+            app:cornerRadius="10dp" />
+
+        <com.module.common.widget.AutoFixLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/common_ffDBDCDC"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="按下按钮，背景会变色，松开恢复正常"
+                android:textColor="@color/common_ff000000"
+                android:textSize="16sp" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/default_picture" />
+
+        </com.module.common.widget.AutoFixLinearLayout>
+
+        <com.module.common.widget.TintTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:background="@color/common_ffDBDCDC"
+            android:drawablePadding="10dp"
+            android:gravity="center"
+            android:text="按下按钮，背景会变色，松开恢复正常"
+            android:textColor="@color/common_ff000000"
+            android:textSize="16sp"
+            app:drawableEndCompat="@drawable/default_picture"
+            app:pressedAlpha="0.7" />
 
     </LinearLayout>
 
