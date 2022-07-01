@@ -1,67 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/common_ffF2F2F2"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.module.common.widget.HeadToolBar
+        android:id="@+id/toolbar_head"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/common_ffF2F2F2"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" />
 
-        <com.module.common.widget.HeadToolBar
-            android:id="@+id/toolbar_head"
+    <com.module.common.widget.PullDownRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:background="@color/common_ff717071"
+            android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn"
-            style="@style/button_style_material"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:text="网络测试一下"
-            app:backgroundTint="@color/common_ff00883D"
-            app:cornerRadius="10dp" />
-
-        <com.module.common.widget.AutoFixLinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/common_ffDBDCDC"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="wrap_content"
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn"
+                style="@style/button_style_material"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="网络测试一下"
+                app:backgroundTint="@color/common_ff00883D"
+                app:cornerRadius="10dp" />
+
+            <com.module.common.widget.AutoFixLinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/common_ffDBDCDC"
+                android:gravity="center"
+                app:pressedAlpha="0.6">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="按下按钮，背景会变色，松开恢复正常"
+                    android:textColor="@color/common_ff000000"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/default_picture" />
+
+            </com.module.common.widget.AutoFixLinearLayout>
+
+            <com.module.common.widget.TintTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@color/common_ffDBDCDC"
+                android:drawablePadding="10dp"
+                android:gravity="center"
                 android:text="按下按钮，背景会变色，松开恢复正常"
                 android:textColor="@color/common_ff000000"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:drawableEndCompat="@drawable/default_picture"
+                app:pressedAlpha="0.7" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/default_picture" />
+        </LinearLayout>
 
-        </com.module.common.widget.AutoFixLinearLayout>
+    </com.module.common.widget.PullDownRefreshLayout>
 
-        <com.module.common.widget.TintTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@color/common_ffDBDCDC"
-            android:drawablePadding="10dp"
-            android:gravity="center"
-            android:text="按下按钮，背景会变色，松开恢复正常"
-            android:textColor="@color/common_ff000000"
-            android:textSize="16sp"
-            app:drawableEndCompat="@drawable/default_picture"
-            app:pressedAlpha="0.7" />
-
-    </LinearLayout>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</LinearLayout>

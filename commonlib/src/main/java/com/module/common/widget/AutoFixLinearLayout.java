@@ -20,6 +20,8 @@ import com.module.common.R;
 public class AutoFixLinearLayout extends TintLinearLayout {
 
     private int mRadius = 0;
+    private Path path;
+    private RectF rectF;
 
     public AutoFixLinearLayout(Context context) {
         super(context);
@@ -32,6 +34,8 @@ public class AutoFixLinearLayout extends TintLinearLayout {
     }
 
     private void autoFixInit(Context context, AttributeSet attrs) {
+        path = new Path();
+        rectF = new RectF();
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.AutoFixLinearLayout);
         mRadius = typedArray.getInt(R.styleable.AutoFixLinearLayout_roundCorner, 0);
         typedArray.recycle();
@@ -39,8 +43,6 @@ public class AutoFixLinearLayout extends TintLinearLayout {
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
-        Path path = new Path();
-        RectF rectF = new RectF();
         rectF.set(0, 0, getWidth(), getHeight());
         path.addRoundRect(rectF, dp2px(mRadius), dp2px(mRadius), Path.Direction.CW);
         canvas.clipPath(path);

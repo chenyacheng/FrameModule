@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Lifecycle;
+import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chenyacheng.snackbar.SnackBarBuilder;
@@ -22,9 +22,9 @@ import com.module.app.databinding.ActivityMainFragmentBinding;
 import com.module.app.databinding.TabMainBottomLayoutBinding;
 import com.module.app.request.AppViewModel;
 import com.module.arch.base.BaseActivity;
+import com.module.common.constant.RouterConstant;
 import com.module.home.ui.fragment.HomeFragment;
 import com.module.me.ui.fragment.MeFragment;
-import com.module.common.constant.RouterConstant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +52,8 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
      */
     private long lastBackPressedTime = 0;
     private TabLayoutMediator mediator;
+    private ViewPagerOnPageChangeCallback onPageChangeCallback;
+    private boolean smoothScroll;
     private AppViewModel viewModel;
 
     @NonNull
@@ -72,23 +74,24 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
         fragmentList.add(homeFragment);
         fragmentList.add(meFragment);
 
-        TabLayout mTabLayout = getBinding().tabLayout;
-
-        getBinding().mainViewPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), getLifecycle()));
+        getBinding().mainViewPager.setAdapter(new MyFragmentPagerAdapter(this));
         getBinding().mainViewPager.setOffscreenPageLimit(fragmentList.size());
         // 禁止滑动
         getBinding().mainViewPager.setUserInputEnabled(false);
         // 去掉两侧的光晕效果
         getBinding().mainViewPager.getChildAt(0).setOverScrollMode(View.OVER_SCROLL_NEVER);
+        onPageChangeCallback = new ViewPagerOnPageChangeCallback();
+        getBinding().mainViewPager.registerOnPageChangeCallback(onPageChangeCallback);
+
         // 将tabLayout和ViewPager2绑定
+        TabLayout mTabLayout = getBinding().tabLayout;
         mediator = new TabLayoutMediator(mTabLayout, getBinding().mainViewPager, (tab, position) -> tab.setCustomView(getTabView(position)));
         mediator.attach();
-
         mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 setTextAndIconColor(tab.getPosition(), true);
-                getBinding().mainViewPager.setCurrentItem(tab.getPosition(), false);
+                getBinding().mainViewPager.setCurrentItem(tab.getPosition(), smoothScroll);
             }
 
             @Override
@@ -98,7 +101,7 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                // No-op
             }
         });
         // 设置第一选项卡为选中状态
@@ -155,6 +158,8 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
 
     @Override
     protected void onDestroy() {
+        getBinding().mainViewPager.unregisterOnPageChangeCallback(onPageChangeCallback);
+        onPageChangeCallback = null;
         mediator.detach();
         mediator = null;
         bottomTabChecked.clear();
@@ -165,8 +170,9 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
 
     private class MyFragmentPagerAdapter extends FragmentStateAdapter {
 
-        public MyFragmentPagerAdapter(@NonNull FragmentManager fragmentManager, @NonNull Lifecycle lifecycle) {
-            super(fragmentManager, lifecycle);
+
+        public MyFragmentPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+            super(fragmentActivity);
         }
 
         @NonNull
@@ -178,6 +184,19 @@ public class MainFragmentActivity extends BaseActivity<ActivityMainFragmentBindi
         @Override
         public int getItemCount() {
             return fragmentList.size();
+        }
+    }
+
+    private class ViewPagerOnPageChangeCallback extends ViewPager2.OnPageChangeCallback {
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+            // 点击 tab 无动画、滑动有动画
+            if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                smoothScroll = true;
+            } else if (state == ViewPager2.SCROLL_STATE_IDLE) {
+                smoothScroll = false;
+            }
         }
     }
 }

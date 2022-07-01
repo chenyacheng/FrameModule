@@ -25,6 +25,7 @@ abstract class BaseLazyFragment<VB : ViewBinding> : Fragment() {
     protected val binding get() = viewBinding!!
     private var mFragmentProvider: ViewModelProvider? = null
     private var mApplicationProvider: ViewModelProvider? = null
+    private var firstVisible = true
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -42,15 +43,24 @@ abstract class BaseLazyFragment<VB : ViewBinding> : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         viewBinding = getViewBinding(inflater, container)
-        init()
         return viewBinding!!.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // 可见又是第一次
+        if (firstVisible) {
+            lazyLoadInit()
+            // 改变首次可见的状态
+            firstVisible = false
+        }
     }
 
     protected abstract fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): VB
 
     protected abstract fun initViewModel()
 
-    protected abstract fun init()
+    protected abstract fun lazyLoadInit()
 
     protected open fun <T : ViewModel> getFragmentScopeViewModel(@NonNull modelClass: Class<T>): T {
         if (mFragmentProvider == null) {
@@ -68,6 +78,7 @@ abstract class BaseLazyFragment<VB : ViewBinding> : Fragment() {
 
     override fun onDestroyView() {
         viewBinding = null
+        firstVisible = false
         super.onDestroyView()
     }
 }

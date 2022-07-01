@@ -34,7 +34,7 @@ public class MeFragment extends BaseLazyFragment<MeFragmentMeMainBinding> {
     }
 
     @Override
-    protected void init() {
+    protected void lazyLoadInit() {
         LogUtils.info("Me", "Me启动");
         toolBar();
         getBinding().btn1.setOnClickListener(view -> ARouter.getInstance().build(RouterConstant.PATH_ME_AMOUNT_EDIT_TEXT_ACTIVITY).navigation());

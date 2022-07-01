@@ -1,5 +1,7 @@
 package com.module.home.ui.fragment;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -37,7 +39,7 @@ public class HomeFragment extends BaseLazyFragment<HomeFragmentHomeMainBinding> 
     }
 
     @Override
-    protected void init() {
+    protected void lazyLoadInit() {
         LogUtils.info("Home", "Home启动");
         toolBar();
         homeViewModel.getMessageLiveData().observe(getViewLifecycleOwner(), s -> {
@@ -53,6 +55,10 @@ public class HomeFragment extends BaseLazyFragment<HomeFragmentHomeMainBinding> 
             ProgressDialogUtils.getInstance().showProgress(context);
             homeViewModel.test();
         });
+
+        getBinding().swipeRefresh.setOnRefreshListener(
+                () -> new Handler(Looper.getMainLooper()).postDelayed(
+                        () -> getBinding().swipeRefresh.setRefreshing(false), 2000));
     }
 
     private void toolBar() {
