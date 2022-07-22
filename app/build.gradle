@@ -21,6 +21,12 @@ android {
 
     // signingConfigs要放在buildTypes前面
     signingConfigs {
+        debug {
+            storeFile file("signature/debug.jks")
+            storePassword "123456"
+            keyAlias "debug"
+            keyPassword "123456"
+        }
         metaKey {
             storeFile file("signature/xxx.jks")
             storePassword "123456"
@@ -36,6 +42,7 @@ android {
             shrinkResources false
             // Zipalign优化
             zipAlignEnabled false
+            signingConfig signingConfigs.debug
         }
         release {
             // minifyEnabled是否启用混淆

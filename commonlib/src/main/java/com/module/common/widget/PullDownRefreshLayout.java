@@ -59,24 +59,19 @@ public class PullDownRefreshLayout extends SwipeRefreshLayout {
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent ev) {
-        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            int mActivePointerId = ev.getPointerId(0);
-            int pointerIndex = ev.findPointerIndex(mActivePointerId);
-            if (pointerIndex < 0) {
-                return false;
-            }
-            float mInitialDownY = ev.getY(pointerIndex);
-            mInitialMotionY = mInitialDownY + mTouchSlop;
-        }
-        return super.onInterceptTouchEvent(ev);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent ev) {
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        int pointerIndex;
         switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                pointerIndex = ev.findPointerIndex(ev.getPointerId(0));
+                if (pointerIndex < 0) {
+                    return false;
+                }
+                float mInitialDownY = ev.getY(pointerIndex);
+                mInitialMotionY = mInitialDownY + mTouchSlop;
+                break;
             case MotionEvent.ACTION_MOVE:
-                int pointerIndex = ev.findPointerIndex(ev.getPointerId(0));
+                pointerIndex = ev.findPointerIndex(ev.getPointerId(0));
                 if (pointerIndex < 0) {
                     return false;
                 }
@@ -86,10 +81,12 @@ public class PullDownRefreshLayout extends SwipeRefreshLayout {
                 // 赋值给 mTarget 的 top 使之产生拖动效果。
                 if (overscrollTop >= 0) {
                     int zero = circleViewBottom + getProgressViewStartOffset();
-                    if (zero > 0) {
-                        target.setTranslationY(overscrollTop + zero);
-                    } else {
-                        target.setTranslationY(overscrollTop);
+                    if (zero > getProgressViewStartOffset()) {
+                        if (zero > 0) {
+                            target.setTranslationY(overscrollTop + zero);
+                        } else {
+                            target.setTranslationY(overscrollTop);
+                        }
                     }
                 }
                 break;
@@ -106,7 +103,7 @@ public class PullDownRefreshLayout extends SwipeRefreshLayout {
             default:
                 break;
         }
-        return super.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override

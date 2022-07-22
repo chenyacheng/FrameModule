@@ -1,5 +1,7 @@
 package com.module.arch.base
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
@@ -27,6 +29,15 @@ abstract class BaseActivity<VB : ViewBinding> : AppCompatActivity() {
         initViewModel()
         init()
         LogUtils.info("类名", javaClass.simpleName)
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        // 设置字体为默认大小，不随系统字体大小改而改变
+        val config = Configuration()
+        config.setToDefaults()
+        config.fontScale = 1.0f
+        val context = newBase.createConfigurationContext(config)
+        super.attachBaseContext(context)
     }
 
     override fun onDestroy() {

@@ -25,6 +25,9 @@ android {
 
     buildTypes {
         debug {
+            manifestPlaceholders = [
+                    GAODE_MAP_KEY  : gaode_map_key
+            ]
             buildConfigField("String", "BASE_URL", "\"${base_url}\"")
             buildConfigField("String", "IMAGE_URL", "\"${image_url}\"")
             buildConfigField("String", "BUGLY", "\"${bugly}\"")
@@ -33,6 +36,9 @@ android {
             minifyEnabled false
         }
         release {
+            manifestPlaceholders = [
+                    GAODE_MAP_KEY  : gaode_map_key
+            ]
             buildConfigField("String", "BASE_URL", "\"${base_url}\"")
             buildConfigField("String", "IMAGE_URL", "\"${image_url}\"")
             buildConfigField("String", "BUGLY", "\"${bugly}\"")
@@ -68,6 +74,7 @@ dependencies {
     implementation AndroidX.lifecycle_common_java8
     api AndroidX.viewpager2
     api AndroidX.constraintlayout
+    implementation AndroidX.swiperefreshlayout
     // 图片选择器
     api Github.pictureselector
     api Github.snackBar
@@ -87,4 +94,6 @@ dependencies {
     annotationProcessor project(':wxcompiler')
     // 其中latest.release指代最新Bugly SDK版本号
     api 'com.tencent.bugly:crashreport:latest.release'
+    // 高德地图定位
+    implementation 'com.amap.api:location:latest.integration'
 }

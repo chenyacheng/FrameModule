@@ -2,6 +2,8 @@ package com.module.common.network;
 
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
+
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,7 +29,7 @@ public class ResponseDataProcess implements ResponseListener {
     }
 
     @Override
-    public void onSuccess(Object o) {
+    public void onSuccess(@NonNull Object o) {
         Gson gson = new GsonBuilder().setObjectToNumberStrategy(ToNumberPolicy.LAZILY_PARSED_NUMBER).serializeNulls().create();
         BaseResponse baseResponse = gson.fromJson(new Gson().toJson(o), BaseResponse.class);
         String code = "200";

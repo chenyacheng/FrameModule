@@ -11,6 +11,10 @@ import coil.request.ImageRequest
 import coil.target.ImageViewTarget
 import coil.transform.CircleCropTransformation
 import coil.transform.RoundedCornersTransformation
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.model.GlideUrl
+import com.bumptech.glide.load.model.LazyHeaders
+import com.bumptech.glide.request.RequestOptions
 import com.luck.picture.lib.listener.OnImageCompleteCallback
 import com.luck.picture.lib.tools.MediaUtils
 import com.luck.picture.lib.widget.longimage.ImageSource
@@ -31,6 +35,20 @@ class ImageViewDisplayUtils private constructor() {
     }
 
     companion object {
+        fun imageViewForGlide(imageView: ImageView, url: String) {
+            // 隐私政策整改之Glide框架封装
+            val glideUrl = GlideUrl(url, LazyHeaders.Builder().addHeader("User-Agent", "android").build())
+            Glide.with(imageView.context)
+                .load(glideUrl)
+                .apply(miniThumb(100))
+                .into(imageView);
+        }
+
+        private fun miniThumb(size: Int): RequestOptions {
+            return RequestOptions.fitCenterTransform().override(size)
+        }
+
+
         fun imageViewNotPlaceholderDisplay(imageView: ImageView, url: String) {
             imageView.load(url)
         }

@@ -94,7 +94,7 @@ public class StartupActivity extends AppCompatActivity implements Handler.Callba
         return true;
     }
 
-    public static class MyViewModel extends AndroidViewModel {
+    private static class MyViewModel extends AndroidViewModel {
 
         private final long startUptimeMillis = SystemClock.uptimeMillis();
 

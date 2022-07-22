@@ -50,7 +50,7 @@ public class TintLinearLayout extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        performClick();
+        super.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 this.setBackground(pressedDrawable);
@@ -65,10 +65,5 @@ public class TintLinearLayout extends LinearLayout {
                 break;
         }
         return true;
-    }
-
-    @Override
-    public boolean performClick() {
-        return super.performClick();
     }
 }

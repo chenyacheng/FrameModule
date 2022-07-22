@@ -9,6 +9,7 @@ object Versions {
     const val lifecycle_version = "2.4.0"
     const val viewpager2 = "1.0.0"
     const val constraintlayout = "2.1.0"
+    const val swiperefreshlayout = "1.1.0"
     //const val splashscreen = "1.0.0-alpha01"
     const val retrofit = "2.9.0"
     const val okhttp = "4.9.3"
@@ -35,6 +36,7 @@ object AndroidX {
     const val lifecycle_common_java8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle_version}"
     const val viewpager2 = "androidx.viewpager2:viewpager2:${Versions.viewpager2}"
     const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
+    const val swiperefreshlayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swiperefreshlayout}"
     //const val splashscreen = "androidx.core:core-splashscreen:${Versions.splashscreen}"
 }
 
