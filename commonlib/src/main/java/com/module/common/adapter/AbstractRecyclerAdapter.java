@@ -228,7 +228,7 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
 
     public void setListData(List<T> data) {
         this.list = data;
-        notifyDataSetChanged();
+        notifyAllDataChanged();
     }
 
     public void setSize(int size) {
@@ -243,7 +243,7 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
         if (null != list) {
             list.addAll(addData);
         }
-        notifyDataSetChanged();
+        notifyAllDataChanged();
     }
 
     /**
@@ -253,6 +253,19 @@ public abstract class AbstractRecyclerAdapter<T> extends RecyclerView.Adapter<Re
      */
     public void setLoadState(int loadState) {
         this.loadState = loadState;
+        notifyAllDataChanged();
+    }
+
+    /**
+     * 是否可以下拉加载，true 可以，false 不可以
+     *
+     * @return true of false
+     */
+    public boolean hasPullRefresh() {
+        return this.loadState == LOADING_COMPLETE;
+    }
+
+    public void notifyAllDataChanged() {
         notifyDataSetChanged();
     }
 
