@@ -1,14 +1,15 @@
-import com.module.build.Alibaba
-import com.module.build.AndroidX
-import com.module.build.BuildConfig
-import com.module.build.Github
-import com.module.build.Google
-import com.module.build.Squareup
+import com.module.plugin.Alibaba
+import com.module.plugin.AndroidX
+import com.module.plugin.BuildConfig
+import com.module.plugin.Github
+import com.module.plugin.Google
+import com.module.plugin.Squareup
 
 plugins {
     id 'com.android.library'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.module.build.plugin'
 }
 
 android {
@@ -16,8 +17,6 @@ android {
     defaultConfig {
         minSdk BuildConfig.minSdk
         targetSdk BuildConfig.targetSdk
-        versionCode BuildConfig.versionCode
-        versionName BuildConfig.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"

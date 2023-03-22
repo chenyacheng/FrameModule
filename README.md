@@ -22,7 +22,7 @@
     在 app 模块下 /reinforce/reinforce.bat 里动态修改每次需要加固的apk安装包
 ## 查看依赖版本
     android {
-        configurations.all {    
+        configurations.all {
             resolutionStrategy {
                 failOnVersionConflict()
                 // 全局强制指定依赖版本，例如如下

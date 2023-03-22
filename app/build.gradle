@@ -1,10 +1,11 @@
-import com.module.build.Alibaba
-import com.module.build.BuildConfig
+import com.module.plugin.Alibaba
+import com.module.plugin.BuildConfig
 
 plugins {
     id 'com.android.application'
-    id 'kotlin-android'
+    id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.module.build.plugin'
 }
 
 android {
@@ -27,7 +28,7 @@ android {
             keyAlias "debug"
             keyPassword "123456"
         }
-        metaKey {
+        moduleKey {
             storeFile file("signature/xxx.jks")
             storePassword "123456"
             keyAlias "key0"
@@ -52,7 +53,7 @@ android {
             // Zipalign优化
             zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.metaKey
+            signingConfig signingConfigs.moduleKey
         }
         applicationVariants.all { variant ->
             variant.outputs.all { output ->

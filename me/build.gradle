@@ -1,13 +1,17 @@
-import com.module.build.Alibaba
-import com.module.build.BuildConfig
+import com.module.plugin.Alibaba
+import com.module.plugin.BuildConfig
+
+plugins {
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.module.build.plugin'
+}
 
 if (isModule.toBoolean()) {
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdk BuildConfig.compileSdk
