@@ -24,7 +24,6 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btn"
-                style="@style/button_style_material"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -34,41 +33,17 @@
                 app:backgroundTint="@color/common_ff00883D"
                 app:cornerRadius="10dp" />
 
-            <com.module.common.widget.AutoFixLinearLayout
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
-                android:background="@color/common_ffDBDCDC"
-                android:gravity="center"
-                app:pressedAlpha="0.6"
-                app:roundCorner="10">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="按下按钮，背景会变色，松开恢复正常"
-                    android:textColor="@color/common_ff000000"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/default_picture" />
-
-            </com.module.common.widget.AutoFixLinearLayout>
-
-            <com.module.common.widget.TintTextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="@color/common_ffDBDCDC"
-                android:drawablePadding="10dp"
-                android:gravity="center"
-                android:text="按下按钮，背景会变色，松开恢复正常"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:text="按钮，布局点击效果"
                 android:textColor="@color/common_ff000000"
-                android:textSize="16sp"
-                app:drawableEndCompat="@drawable/default_picture"
-                app:pressedAlpha="0.7" />
+                app:backgroundTint="@color/common_ffffffff"
+                app:cornerRadius="5dp" />
 
         </LinearLayout>
 

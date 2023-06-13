@@ -1,4 +1,4 @@
-package com.module.me.ui.edittext
+package com.module.me.ui.activity.edittext
 
 import android.text.Editable
 import android.text.TextUtils

@@ -5,13 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="48dp">
 
-    <com.module.common.widget.TintFrameLayout
+    <com.module.common.widget.alpha.AlphaFrameLayout
         android:id="@+id/fl_left"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start|center_vertical"
-        android:visibility="gone"
-        app:pressedAlpha="0.7">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_left_icon"
@@ -22,7 +21,7 @@
             android:layout_marginEnd="14dp"
             android:contentDescription="@null" />
 
-    </com.module.common.widget.TintFrameLayout>
+    </com.module.common.widget.alpha.AlphaFrameLayout>
 
     <TextView
         android:id="@+id/tv_middle_title"
@@ -33,13 +32,12 @@
         android:textSize="18sp"
         android:visibility="gone" />
 
-    <com.module.common.widget.TintFrameLayout
+    <com.module.common.widget.alpha.AlphaFrameLayout
         android:id="@+id/fl_right"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end|center_vertical"
-        android:visibility="gone"
-        app:pressedAlpha="0.7">
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_right_icon"
@@ -50,6 +48,6 @@
             android:layout_marginEnd="14dp"
             android:contentDescription="@null" />
 
-    </com.module.common.widget.TintFrameLayout>
+    </com.module.common.widget.alpha.AlphaFrameLayout>
 
 </FrameLayout>

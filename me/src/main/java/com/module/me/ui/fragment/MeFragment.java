@@ -38,6 +38,7 @@ public class MeFragment extends BaseLazyFragment<MeFragmentMeMainBinding> {
         LogUtils.info("Me", "Me启动");
         toolBar();
         getBinding().btn1.setOnClickListener(view -> ARouter.getInstance().build(RouterConstant.PATH_ME_AMOUNT_EDIT_TEXT_ACTIVITY).navigation());
+        getBinding().btn2.setOnClickListener(view -> ARouter.getInstance().build(RouterConstant.PATH_ME_PHOTOS_ACTIVITY).navigation());
     }
 
     private void toolBar() {

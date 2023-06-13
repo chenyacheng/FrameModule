@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_ffDBDCDC"
+    android:orientation="vertical">
+
+    <com.module.common.widget.HeadToolBar
+        android:id="@+id/toolbar_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.module.common.widget.round.RoundButton
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/common_ffffffff"
+        android:text="Button 按钮，没有圆角，没有alpha"
+        android:textAllCaps="false" />
+
+    <com.module.common.widget.round.RoundButton
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/common_ffffffff"
+        android:text="Button 按钮，有圆角，有alpha：默认0.5"
+        android:textAllCaps="false"
+        app:radius="5dp" />
+
+    <com.module.common.widget.round.RoundButton
+        android:id="@+id/btn22"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/common_ffffffff"
+        android:text="Button 按钮，有圆角，有alpha：0.7"
+        android:textAllCaps="false"
+        app:pressedAlpha="0.7"
+        app:radius="5dp" />
+
+    <com.module.common.widget.alpha.AlphaButton
+        android:id="@+id/btn3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/common_ff00883D"
+        android:text="Button 按钮，没有圆角，有alpha"
+        android:textAllCaps="false" />
+
+    <com.module.common.widget.alpha.AlphaButton
+        android:id="@+id/btn4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@color/common_ffffffff"
+        android:text="Button 按钮，不可点击"
+        android:textAllCaps="false" />
+
+    <com.module.common.widget.round.RoundButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:drawableEnd="@mipmap/ic_launcher"
+        android:text="Button，加上图标"
+        android:textAllCaps="false"
+        app:radius="8dp" />
+
+</LinearLayout>

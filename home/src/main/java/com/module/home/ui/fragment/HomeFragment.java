@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.chenyacheng.snackbar.SnackBarBuilder;
 import com.module.arch.base.BaseLazyFragment;
 import com.module.arch.utils.LogUtils;
+import com.module.common.constant.RouterConstant;
 import com.module.common.message.SharedViewModel;
 import com.module.common.utils.ProgressDialogUtils;
 import com.module.common.widget.HeadToolBar;
@@ -55,6 +57,9 @@ public class HomeFragment extends BaseLazyFragment<HomeFragmentHomeMainBinding> 
             ProgressDialogUtils.getInstance().showProgress(context);
             homeViewModel.test();
         });
+
+        getBinding().btn1.setOnClickListener(v ->
+                ARouter.getInstance().build(RouterConstant.PATH_HOME_BUTTON_AND_LAYOUT_ACTIVITY).navigation());
 
         getBinding().swipeRefresh.setOnRefreshListener(
                 () -> new Handler(Looper.getMainLooper()).postDelayed(

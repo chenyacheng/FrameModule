@@ -15,7 +15,7 @@ object Versions {
     const val okhttp = "4.9.3"
     const val leakcanary_android = "2.7"
     const val pictureselector = "v2.7.3-rc10"
-    const val snackBar = "1.2.2"
+    const val snackBar = "1.2.5"
     const val coil = "2.0.0-rc02"
     const val glide = "4.13.0"
     const val arouter = "1.5.2"

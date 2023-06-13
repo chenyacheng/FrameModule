@@ -63,6 +63,6 @@ public class LoadView extends View {
             canvas.rotate(360 / count, mWidth / 2, mHeight / 2);
         }
         mCurrentIndex++;
-        postInvalidateDelayed(200);
+        postInvalidateDelayed(50);
     }
 }

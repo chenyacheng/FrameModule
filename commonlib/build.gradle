@@ -32,6 +32,7 @@ android {
             buildConfigField("String", "BUGLY", "\"${bugly}\"")
             buildConfigField("boolean", "BUGLY_LOG", "${bugly_log}")
             buildConfigField("boolean", "MODULE", "${isModule}")
+            buildConfigField("boolean", "LOGIN_INTERCEPTOR", "${loginInterceptor}")
             minifyEnabled false
         }
         release {
@@ -43,6 +44,7 @@ android {
             buildConfigField("String", "BUGLY", "\"${bugly}\"")
             buildConfigField("boolean", "BUGLY_LOG", "${bugly_log}")
             buildConfigField("boolean", "MODULE", "${isModule}")
+            buildConfigField("boolean", "LOGIN_INTERCEPTOR", "${loginInterceptor}")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }

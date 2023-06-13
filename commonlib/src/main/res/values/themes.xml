@@ -6,6 +6,8 @@
         <!-- 应用主颜色配置 -->
         <item name="colorPrimaryDark">@color/common_ff009944</item>
         <item name="colorAccent">@color/common_ff009944</item>
+        <item name="buttonStyle">@style/button_style</item>
+        <item name="materialButtonStyle">@style/button_style_material</item>
     </style>
 
     <style name="AppFadeTheme" parent="@style/AppTheme">

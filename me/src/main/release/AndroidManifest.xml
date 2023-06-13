@@ -4,7 +4,8 @@
 
     <application android:theme="@style/AppFadeTheme">
 
-        <activity android:name=".ui.edittext.AmountEditTextActivity" />
+        <activity android:name=".ui.activity.edittext.AmountEditTextActivity" />
+        <activity android:name=".ui.activity.photos.PhotosActivity" />
     </application>
 
 </manifest>

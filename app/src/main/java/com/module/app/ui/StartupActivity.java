@@ -1,6 +1,7 @@
 package com.module.app.ui;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,10 +15,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.AndroidViewModel;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.module.app.R;
 import com.module.arch.utils.LogUtils;
-import com.module.common.constant.RouterConstant;
 
 /**
  * 启动页
@@ -88,7 +87,7 @@ public class StartupActivity extends AppCompatActivity implements Handler.Callba
 
     @Override
     public boolean handleMessage(@NonNull Message msg) {
-        ARouter.getInstance().build(RouterConstant.PATH_APP_MAIN_FRAGMENT_ACTIVITY).navigation();
+        startActivity(new Intent(this, MainFragmentActivity.class));
         finish();
         overridePendingTransition(R.anim.activity_fade_enter, R.anim.activity_fade_exit);
         return true;
