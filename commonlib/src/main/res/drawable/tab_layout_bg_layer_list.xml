@@ -2,16 +2,10 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item>
-        <shape>
-            <padding
-                android:top="0.5dp" />
-            <solid android:color="@color/common_ffc1c1c1" />
-        </shape>
+        <color android:color="@color/common_ffc1c1c1" />
     </item>
-    <item>
-        <shape>
-            <solid android:color="@color/common_ffffffff" />
-        </shape>
+    <item android:top="1px">
+        <color android:color="@color/common_ffffffff" />
     </item>
-
+    
 </layer-list>
