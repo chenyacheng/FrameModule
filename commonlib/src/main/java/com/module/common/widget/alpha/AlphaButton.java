@@ -2,8 +2,10 @@ package com.module.common.widget.alpha;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -66,5 +68,12 @@ public class AlphaButton extends AppCompatButton {
      */
     public void setChangeAlphaWhenDisable(boolean changeAlphaWhenDisable) {
         getAlphaViewHelper().setChangeAlphaWhenDisable(changeAlphaWhenDisable);
+    }
+
+    public void setGradientBgForAlphaButton(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setOrientation(orientation);
+        drawable.setColors(colors);
+        setBackground(drawable);
     }
 }

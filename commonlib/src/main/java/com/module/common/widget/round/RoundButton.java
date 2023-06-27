@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.Nullable;
 
 import com.module.common.widget.alpha.AlphaButton;
@@ -17,6 +19,8 @@ import com.module.common.widget.alpha.AlphaButton;
  * @date 2023/4/28 上午9:50
  */
 public class RoundButton extends AlphaButton {
+
+    private RoundGradientDrawable bg;
 
     public RoundButton(Context context) {
         super(context);
@@ -36,7 +40,12 @@ public class RoundButton extends AlphaButton {
         } else {
             bgColor = Color.WHITE;
         }
-        RoundGradientDrawable bg = RoundGradientDrawable.fromAttributeSet(context, attrs, bgColor);
+        bg = RoundGradientDrawable.fromAttributeSet(context, attrs, bgColor);
         setBackground(bg);
+    }
+
+    public void setGradientBgForRoundButton(GradientDrawable.Orientation orientation, @ColorInt int[] colors) {
+        bg.setOrientation(orientation);
+        bg.setColors(colors);
     }
 }
