@@ -1,17 +1,17 @@
-import org.gradle.api.initialization.resolve.RepositoriesMode
-
 pluginManagement {
+    @Suppress("UnstableApiUsage")
     includeBuild("build-plugin")
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven("https://maven.aliyun.com/repository/central")
+        maven("https://maven.aliyun.com/repository/google")
+        maven("https://maven.aliyun.com/repository/public")
+        maven("https://maven.aliyun.com/repository/gradle-plugin")
         gradlePluginPortal()
         google()
         mavenCentral()
     }
 }
+@Suppress("UnstableApiUsage")
 dependencyResolutionManagement {
     // repositoriesMode设置构建中存储库的依赖模式
     // FAIL_ON_PROJECT_REPOS -> 默认设置,项目或插件中任何库的所有构建都可以触发报错。
@@ -24,22 +24,22 @@ dependencyResolutionManagement {
     // 具体见: https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/resolve/RepositoriesMode.html
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/central' }
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/public' }
-        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven("https://maven.aliyun.com/repository/central")
+        maven("https://maven.aliyun.com/repository/google")
+        maven("https://maven.aliyun.com/repository/public")
+        maven("https://maven.aliyun.com/repository/gradle-plugin")
         google()
         mavenCentral()
-        maven { url 'https://jitpack.io' }
+        maven("https://jitpack.io")
     }
 }
 rootProject.name = "FrameModule"
-include ':baselib'
-include ':commonlib'
-include ':localrepo'
-include ':wxannotaion'
-include ':wxcompiler'
-include ':app'
-include ':home'
-include ':me'
-include ':networklib'
+include(":baselib")
+include(":commonlib")
+include(":networklib")
+include(":localrepo")
+include(":wxannotaion")
+include(":wxcompiler")
+include(":app")
+include(":home")
+include(":me")
