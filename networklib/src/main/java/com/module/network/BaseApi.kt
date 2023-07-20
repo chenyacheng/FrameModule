@@ -35,22 +35,15 @@ class BaseApi {
             chain.proceed(build)
         }
         // 创建一个OkHttpClient并设置超时时间
-        val builder = OkHttpClient.Builder()
-        builder.connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS)
-        builder.readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
-        builder.writeTimeout(WRITE_TIME_OUT, TimeUnit.SECONDS)
+        val builder = getOkHttpClient()
         builder.addInterceptor(headerInterceptor)
-        if (BuildConfig.ORIGINAL_DATA) {
-            builder.addInterceptor(getLevel())
-        }
         // 需要参数加密
-        if (BuildConfig.ENCRYPT) {
+        if (NetworkConfig.ENCRYPT) {
             builder.addInterceptor(RequestEncryptInterceptor())
             builder.addInterceptor(ResponseDecryptInterceptor())
         }
-        val client: OkHttpClient = builder.build()
         return Retrofit.Builder()
-            .client(client)
+            .client(builder.build())
             .baseUrl(baseUrl)
             // 请求结果转换为基本类型，一般为String
             .addConverterFactory(ScalarsConverterFactory.create())
@@ -73,21 +66,25 @@ class BaseApi {
     fun getSimpleRetrofit(baseUrl: String): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(getOkHttpClient()) // 请求结果转换为基本类型，一般为String
-            .addConverterFactory(ScalarsConverterFactory.create()) // 请求的结果转为实体类
+            .client(getOkHttpClient().build())
+            // 请求结果转换为基本类型，一般为String
+            .addConverterFactory(ScalarsConverterFactory.create())
+            // 请求的结果转为实体类
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    private fun getOkHttpClient(): OkHttpClient {
+    private fun getOkHttpClient(): OkHttpClient.Builder {
         // 定制OkHttp
         val httpClientBuilder = OkHttpClient.Builder()
         // OkHttp进行添加拦截器loggingInterceptor
-        httpClientBuilder.addInterceptor(getLevel())
+        if (NetworkConfig.ORIGINAL_DATA) {
+            httpClientBuilder.addInterceptor(getLevel())
+        }
         httpClientBuilder.connectTimeout(CONNECT_TIME_OUT, TimeUnit.SECONDS)
             .readTimeout(READ_TIME_OUT, TimeUnit.SECONDS)
             .writeTimeout(WRITE_TIME_OUT, TimeUnit.SECONDS)
-        return httpClientBuilder.build()
+        return httpClientBuilder
     }
 
     // 日志级别分为4类：NONE、BASIC、HEADERS、BODY；NONE无；BASIC请求/响应行；HEADERS请求/响应行+头；BODY请求/响应行+头+体
@@ -95,7 +92,7 @@ class BaseApi {
     private fun getLevel(): HttpLoggingInterceptor {
         // 日志级别分为4类：NONE、BASIC、HEADERS、BODY；NONE无；BASIC请求/响应行；HEADERS请求/响应行+头；BODY请求/响应行+头+体
         // 日志显示级别
-        val level: HttpLoggingInterceptor.Level = if (BuildConfig.SHOW_LOG) {
+        val level: HttpLoggingInterceptor.Level = if (NetworkConfig.SHOW_LOG) {
             HttpLoggingInterceptor.Level.BODY
         } else {
             HttpLoggingInterceptor.Level.NONE

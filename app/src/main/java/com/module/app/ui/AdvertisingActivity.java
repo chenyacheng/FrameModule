@@ -18,7 +18,6 @@ import com.module.arch.utils.LogUtils;
 import com.module.common.AppConfig;
 import com.module.common.constant.RouterConstant;
 import com.module.common.data.AdvertisingResult;
-import com.module.common.navigationbar.UltimateBar;
 import com.module.common.store.UserInfo;
 import com.module.common.store.UserInfoResult;
 import com.module.common.utils.ImageViewDisplayUtils;
@@ -54,9 +53,6 @@ public class AdvertisingActivity extends BaseActivity<ActivityAdvertisingBinding
     @Override
     protected void init() {
         LogUtils.info(getClass().getSimpleName(), "广告页");
-        // 设置状态栏
-        UltimateBar.Companion.with(this).create().immersionBar();
-
         appViewModel.getMessageLiveData().observe(this, s -> SnackBarBuilder.getInstance().builderLong(this, s));
         appViewModel.advertising();
         appViewModel.getAdvertisingLiveData().observe(this, o -> {

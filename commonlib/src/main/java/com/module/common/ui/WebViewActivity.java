@@ -18,7 +18,6 @@ import com.module.common.R;
 import com.module.common.constant.RouterConstant;
 import com.module.common.databinding.ActivityWebviewBinding;
 import com.module.common.message.SharedViewModel;
-import com.module.common.navigationbar.UltimateBar;
 import com.module.common.widget.HeadToolBar;
 
 /**
@@ -77,10 +76,6 @@ public class WebViewActivity extends BaseActivity<ActivityWebviewBinding> {
     @Override
     protected void init() {
         LogUtils.info(getClass().getSimpleName(), "webView页面");
-
-        // 设置状态栏
-        UltimateBar.Companion.with(this).statusDark(true).statusDrawable(R.color.common_ffffffff)
-                .statusDrawable2(R.color.common_ff000000).create().drawableBar();
 
         toolBar();
 

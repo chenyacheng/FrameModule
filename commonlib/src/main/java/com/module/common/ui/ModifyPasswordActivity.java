@@ -11,7 +11,6 @@ import com.module.arch.base.BaseActivity;
 import com.module.arch.utils.LogUtils;
 import com.module.common.constant.RouterConstant;
 import com.module.common.databinding.ActivityModifyPasswordBinding;
-import com.module.common.navigationbar.UltimateBar;
 import com.module.common.utils.ProgressDialogUtils;
 
 import java.lang.ref.WeakReference;
@@ -46,8 +45,6 @@ public class ModifyPasswordActivity extends BaseActivity<ActivityModifyPasswordB
     @Override
     protected void init() {
         LogUtils.info(getClass().getSimpleName(), "修改密码页");
-        // 设置状态栏
-        UltimateBar.Companion.with(this).create().immersionBar();
 
         viewModel.commonRequest.getMessageLiveData().observe(this, s -> {
             ProgressDialogUtils.getInstance().hideProgress();

@@ -11,7 +11,6 @@ import com.module.arch.utils.LogUtils;
 import com.module.common.constant.RouterConstant;
 import com.module.common.databinding.ActivityLoginBinding;
 import com.module.common.message.SharedViewModel;
-import com.module.common.navigationbar.UltimateBar;
 
 /**
  * 登录页
@@ -52,9 +51,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
             SnackBarBuilder.getInstance().builderLong(this, accountExceptionTips);
         }
         LogUtils.info(getClass().getSimpleName(), "登录页");
-        // 设置状态栏
-        UltimateBar.Companion.with(this).create().immersionBar();
-
 
     }
 

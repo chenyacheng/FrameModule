@@ -1,12 +1,9 @@
 package com.module.common.utils;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.text.TextUtils;
-import android.widget.Toast;
 
 import com.alipay.sdk.app.PayTask;
 
@@ -43,6 +40,7 @@ public class AliPayUtils {
         payThread.start();
     }
 
+    @SuppressWarnings("unchecked")
     private final Handler mHandler = new Handler(Looper.myLooper(), msg -> {
         if (msg.what == SDK_PAY_FLAG) {
             aliPayRep((Map<String, String>) msg.obj);

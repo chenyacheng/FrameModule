@@ -42,7 +42,7 @@
                 android:insetBottom="0dp"
                 android:text="按钮，布局点击效果"
                 android:textColor="@color/common_ff000000"
-                app:backgroundTint="@color/common_ffffffff"
+                app:backgroundTint="@color/common_ffDBDCDC"
                 app:cornerRadius="5dp" />
 
         </LinearLayout>

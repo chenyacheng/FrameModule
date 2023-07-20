@@ -7,7 +7,7 @@ import com.alibaba.android.arouter.facade.annotation.Interceptor;
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback;
 import com.alibaba.android.arouter.facade.template.IInterceptor;
 import com.module.arch.utils.LogUtils;
-import com.module.common.BuildConfig;
+import com.module.common.AppConfig;
 import com.module.common.constant.RouterConstant;
 import com.module.common.store.UserInfo;
 
@@ -22,7 +22,7 @@ public class LoginInterceptor implements IInterceptor {
 
     @Override
     public void process(Postcard postcard, InterceptorCallback callback) {
-        if (BuildConfig.LOGIN_INTERCEPTOR) {
+        if (AppConfig.LOGIN_INTERCEPTOR) {
             String path = postcard.getPath();
             // 如果已经登录不拦截
             String a = "loginInfo";

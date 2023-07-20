@@ -14,41 +14,33 @@ if (isModule.toBoolean()) {
 }
 
 android {
+    namespace "com.module.me"
     compileSdk BuildConfig.compileSdk
     defaultConfig {
         if (isModule.toBoolean()) {
             applicationId "com.module.me"
+            versionCode BuildConfig.versionCode
+            versionName BuildConfig.versionName
         }
         minSdk BuildConfig.minSdk
         targetSdk BuildConfig.targetSdk
-        versionCode BuildConfig.versionCode
-        versionName BuildConfig.versionName
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         debug {
             // minifyEnabled是否启用混淆
             minifyEnabled false
-            // Zipalign优化
-            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {
             // minifyEnabled是否启用混淆
             minifyEnabled false
-            // 删除无效的Resource
-            shrinkResources false
-            // Zipalign优化
-            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 
     resourcePrefix "me_"
@@ -69,6 +61,10 @@ android {
 
     buildFeatures {
         viewBinding true
+        buildConfig false
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 

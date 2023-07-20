@@ -1,9 +1,4 @@
-import com.module.plugin.Alibaba
-import com.module.plugin.AndroidX
-import com.module.plugin.BuildConfig
-import com.module.plugin.Github
-import com.module.plugin.Google
-import com.module.plugin.Squareup
+import com.module.plugin.*
 
 plugins {
     id 'com.android.library'
@@ -13,49 +8,39 @@ plugins {
 }
 
 android {
+    namespace "com.module.common"
     compileSdk BuildConfig.compileSdk
     defaultConfig {
         minSdk BuildConfig.minSdk
         targetSdk BuildConfig.targetSdk
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
         debug {
             manifestPlaceholders = [
-                    GAODE_MAP_KEY  : gaode_map_key
+                    GAODE_MAP_KEY: gaode_map_key
             ]
-            buildConfigField("String", "BASE_URL", "\"${base_url}\"")
-            buildConfigField("String", "IMAGE_URL", "\"${image_url}\"")
-            buildConfigField("String", "BUGLY", "\"${bugly}\"")
-            buildConfigField("boolean", "BUGLY_LOG", "${bugly_log}")
-            buildConfigField("boolean", "MODULE", "${isModule}")
-            buildConfigField("boolean", "LOGIN_INTERCEPTOR", "${loginInterceptor}")
             minifyEnabled false
         }
         release {
             manifestPlaceholders = [
-                    GAODE_MAP_KEY  : gaode_map_key
+                    GAODE_MAP_KEY: gaode_map_key
             ]
-            buildConfigField("String", "BASE_URL", "\"${base_url}\"")
-            buildConfigField("String", "IMAGE_URL", "\"${image_url}\"")
-            buildConfigField("String", "BUGLY", "\"${bugly}\"")
-            buildConfigField("boolean", "BUGLY_LOG", "${bugly_log}")
-            buildConfigField("boolean", "MODULE", "${isModule}")
-            buildConfigField("boolean", "LOGIN_INTERCEPTOR", "${loginInterceptor}")
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
     buildFeatures {
         viewBinding true
+        buildConfig false
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -82,7 +67,7 @@ dependencies {
     // https://github.com/coil-kt/coil/ 图片加载框架
     implementation Github.coil
     implementation Github.glide
-    annotationProcessor Github.glide_compiler
+    kapt Github.glide_compiler
     // 检测内存泄漏
     debugImplementation Squareup.leakcanary_android
     // 阿里路由
@@ -92,7 +77,7 @@ dependencies {
     api 'com.tencent.mm.opensdk:wechat-sdk-android:+'
     // 微信支付封装库
     api project(':wxannotaion')
-    annotationProcessor project(':wxcompiler')
+    kapt project(':wxcompiler')
     // 其中latest.release指代最新Bugly SDK版本号
     api 'com.tencent.bugly:crashreport:latest.release'
     // 高德地图定位
